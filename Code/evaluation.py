@@ -13,26 +13,22 @@ import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
 def save_overlay(original_img_tensor, saliency_tensor, save_path):
-    """
-    original_img_tensor: [3, H, W] normalized tensor
-    saliency_tensor:     [1, H, W] 0~1 tensor
-    """
-    # 反归一化原图
+    # denormalize the images
     mean = torch.tensor([0.485, 0.456, 0.406]).view(3,1,1)
     std  = torch.tensor([0.229, 0.224, 0.225]).view(3,1,1)
-    img = original_img_tensor.cpu() * std + mean
-    img = img.permute(1,2,0).numpy()
+    img = original_img_tensor.cpu() * std + mean # [3,H,W]
+    img = img.permute(1,2,0).numpy() # [H,W,3]
     img = np.clip(img, 0, 1)
 
     # saliency map → colormap
-    sal = saliency_tensor.squeeze().cpu().numpy()  # [H, W]
-    sal = (sal - sal.min()) / (sal.max() - sal.min() + 1e-10)  # 归一化到0~1
-    heatmap = cm.jet(sal)[:, :, :3]  # [H, W, 3], 去掉alpha通道
+    sal = saliency_tensor.squeeze().cpu().numpy()  # [Height, Weight]
+    sal = (sal - sal.min()) / (sal.max() - sal.min() + 1e-10)  # normalize to 0-1
+    heatmap = cm.jet(sal)[:, :, :3]  # [H, W, 3], low->blue, high->red
 
-    # resize heatmap到原图尺寸
-    heatmap_pil = Image.fromarray((heatmap * 255).astype(np.uint8))
-    heatmap_pil = heatmap_pil.resize((img.shape[1], img.shape[0]), Image.BILINEAR)
-    heatmap = np.array(heatmap_pil) / 255.0
+    # resize heatmap
+    heatmap_pil = Image.fromarray((heatmap * 255).astype(np.uint8)) #resize tensor to uint8
+    heatmap_pil = heatmap_pil.resize((img.shape[1], img.shape[0]), Image.BILINEAR) #resize to origin img size
+    heatmap = np.array(heatmap_pil) / 255.0 #resize tensor to float
 
     # overlay
     overlay = 0.5 * img + 0.5 * heatmap
