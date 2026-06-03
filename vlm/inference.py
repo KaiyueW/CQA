@@ -4,7 +4,6 @@ import os
 import argparse
 from pathlib import Path
 from PIL import Image
-from collections import defaultdict
 
 # store paths
 os.environ["HF_HOME"]       = "/ubc/cs/research/nlp-raid/students/kwang67/.cache/huggingface"
@@ -16,8 +15,8 @@ sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from models import load_model
 
 # Paths 
-TRAIN_JSON      = "../ChartQA_data/test/test_human.json" # Note: we use the same test json for training samples in few-shot setting, but we will retrieve different questions for the same chart as examples.
-TEST_JSON       = "../ChartQA_data/test/test_human.json"
+TRAIN_JSON      = "../ChartQA_data/test/test_human_preprocessed.json" # Note: we use the same test json for training samples in few-shot setting, but we will retrieve different questions for the same chart as examples.
+TEST_JSON       = "../ChartQA_data/test/test_human_preprocessed.json"
 TRAIN_IMG_DIR   = "../ChartQA_data/test/png"
 TEST_IMG_DIR    = "../ChartQA_data/test/png"
 TRAIN_HEATMAP   = "../saliency_maps/ChartQA_test"
@@ -110,43 +109,37 @@ def retrieve_examples(train_samples, current_sample) -> list:
         if same_image and different_query:
             result.append(s)
             
-    return result # json item for the train examples with keys: "imgname", "query", "label"
+    return result # json item for the train examples with keys: "imgname", "query", "label", "is_numerical", "saliency_map" 
 
 
 def load_example_images(examples, img_dir, heatmap_dir):
     counter = defaultdict(int)
     loaded  = []
     for ex in examples:
-        stem  = os.path.splitext(ex["imgname"])[0]
-        q_idx = counter[stem]
-        counter[stem] += 1
         chart_img   = Image.open(os.path.join(img_dir, ex["imgname"])).convert("RGB")
-        heatmap_img = Image.open(os.path.join(heatmap_dir, f"{stem}_Q{q_idx}.png")).convert("RGB")
+        heatmap_img = Image.open(os.path.join(heatmap_dir, ex["saliency_map"])).convert("RGB")
         loaded.append({
             **ex,
             "chart_img":   chart_img,
             "heatmap_img": heatmap_img,
         })
-    return loaded #json item with keys: "imgname", "query", "label", "chart_img", "heatmap_img" (real images)
+    return loaded #json item with keys: "imgname", "query", "label", "is_numerical", "saliency_map", "chart_img", "heatmap_img" (real images)
 
 
 
 def run_inference(model, samples, train_samples, setting, use_saliency):
     results       = []
-    query_counter = defaultdict(int)
 
     for i, sample in enumerate(samples):
         # load from test json file
         imgname   = sample["imgname"]
         question  = sample["query"]
         gt_answer = sample["label"]
-
-        stem  = os.path.splitext(imgname)[0]
-        q_idx = query_counter[stem]
-        query_counter[stem] += 1
+        is_numerical = sample["is_numerical"]
+        saliency_map = sample["saliency_map"] if use_saliency else None
 
         chart_img   = Image.open(os.path.join(TEST_IMG_DIR, imgname)).convert("RGB")
-        heatmap_img = Image.open(os.path.join(TEST_HEATMAP, f"{stem}_Q{q_idx}.png")).convert("RGB") if use_saliency else None
+        heatmap_img = Image.open(os.path.join(TEST_HEATMAP, saliency_map)).convert("RGB") if use_saliency  else None
 
         if setting == "zeroshot":
             prompt = build_prompt_zeroshot(question, use_saliency)
@@ -158,23 +151,24 @@ def run_inference(model, samples, train_samples, setting, use_saliency):
             prompt, ex_images = build_prompt_fewshot(question, examples, use_saliency)
             images = ex_images + ([chart_img, heatmap_img] if use_saliency else [chart_img])
 
-        print(f"\n{'='*60}")
-        print(f"Sample {i+1} | {imgname} | setting: {setting}")
-        print(f"{'='*60}")
-        print(prompt)
-        print(f"{'='*60}\n")
+        # print(f"\n{'='*60}")
+        # print(f"Sample {i+1} | {imgname} | setting: {setting}")
+        # print(f"{'='*60}")
+        # print(prompt)
+        # print(f"{'='*60}\n")
         predicted_answer = model.generate(prompt, images)
 
         results.append({
             "imgname":      imgname,
-            "saliency_map":      f"{stem}_Q{q_idx}.png" if use_saliency else None,
+            "saliency_map": saliency_map if use_saliency else None,
             "question":     question,
             "gt_answer":    gt_answer,
             "pred_answer":  predicted_answer,
+            "is_numerical": is_numerical,
             })
 
         if (i + 1) % 10 == 0:
-            print(f"{i+1}/{len(samples)} processed.")
+            print(f"----------{i+1}/{len(samples)} processed.----------")
 
     return results
 
@@ -187,7 +181,7 @@ def main():
     args = parser.parse_args()
 
     saliency_tag = "with_saliency" if args.use_saliency else "no_saliency"
-    output_path  = f"./result_jsonsssss/{args.model}_{args.setting}_{args.use_saliency}.json"
+    output_path  = f"./result_11/{args.model}_{args.setting}_{saliency_tag}.json"
 
     with open(TEST_JSON, "r") as f:
         samples = json.load(f)[:args.max_samples] # load test samples, samples[0]["imgname"] = "1.png"
@@ -200,7 +194,7 @@ def main():
     model   = load_model(args.model)
     results = run_inference(model, samples, train_samples, args.setting, args.use_saliency)
 
-    Path("./result_jsonsssss").mkdir(parents=True, exist_ok=True)
+    Path("./result_11").mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"Saved to {output_path}")
