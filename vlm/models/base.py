@@ -7,5 +7,5 @@ class BaseVLM(ABC):
         pass
 
     @abstractmethod
-    def generate(self, prompt: str, images: list) -> str:
+    def generate(self, prompt: list) -> str:
         pass

@@ -1,9 +1,9 @@
 from models.llava15 import LLaVA15
-# from models.internvl import InternVL
+# from models.qwen3vl import Qwen3VL
  
 MODELS = {
     "llava15":  LLaVA15,
-    #"internvl": InternVL,
+    # "qwen3vl":  Qwen3VL,
 }
  
 def load_model(model_name: str):

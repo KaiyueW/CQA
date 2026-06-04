@@ -25,24 +25,41 @@ MAX_SAMPLES     = 50
 
 
 # Prompt builders 
-def build_prompt_zeroshot(question: str, use_saliency: bool) -> str:
-    if use_saliency:
-        return (
-            "USER: <image>\n<image>\n"
-            "The first image is a chart. "
-            "The second image is a saliency map highlighting regions relevant to the question.\n"
-            "Use the saliency map to guide your attention to answer the following question.\n\n"
-            f"Question: {question}\n"
-            "Give a short, direct answer only.\n"
-            "ASSISTANT:"
-        )
+def build_prompt_zeroshot(question: str, chart_img, heatmap_img=None) -> list:
+    system = {
+        "role": "system",
+        "content": [
+            {"type": "text", "text": 
+            "You are an agent who can analyze charts and answer questions based on the charts. "
+            "Provide a short, direct answer only."}
+            ]
+    }
+
+    if heatmap_img is not None:
+        user = {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": chart_img},
+                {"type": "image", "image": heatmap_img},
+                {"type": "text", "text": 
+                    "The first image is a chart. "
+                    "The second image is a saliency map highlighting regions relevant to the question.\n"
+                    "Use the saliency map to guide your attention to answer the following question.\n"
+                    f"Question: {question}"
+                    "Answer with only the final answer."
+                }
+            ]
+        }
     else:
-        return (
-            "USER: <image>\n"
-            f"Answer this question based on the image: {question}\n"
-            "Give a short, direct answer only.\n"
-            "ASSISTANT:"
-        )
+        user = {
+            "role": "user",
+            "content": [
+                {"type": "image", "image": chart_img},
+                {"type": "text", "text": f"Answer this question based on the chart with only the final answer: {question}"}
+            ]
+        }
+
+    return [system, user]
 
 
 def build_prompt_fewshot(question: str, examples: list, use_saliency: bool) -> tuple[str, list]:
@@ -142,8 +159,12 @@ def run_inference(model, samples, train_samples, setting, use_saliency):
         heatmap_img = Image.open(os.path.join(TEST_HEATMAP, saliency_map)).convert("RGB") if use_saliency  else None
 
         if setting == "zeroshot":
-            prompt = build_prompt_zeroshot(question, use_saliency)
-            images = [chart_img, heatmap_img] if use_saliency else [chart_img]
+            prompt = build_prompt_zeroshot(question, chart_img, heatmap_img if use_saliency else None)
+            print(f"Sample {i+1} | {imgname} | setting: {setting}")
+            print(f"{'-'*60}")
+            print(prompt)
+            print(f"{'='*60}")
+            predicted_answer = model.generate(prompt)
 
         elif setting == "fewshot":
             raw_examples = retrieve_examples(train_samples, sample)
@@ -156,7 +177,7 @@ def run_inference(model, samples, train_samples, setting, use_saliency):
         # print(f"{'='*60}")
         # print(prompt)
         # print(f"{'='*60}\n")
-        predicted_answer = model.generate(prompt, images)
+        # predicted_answer = model.generate(prompt, images)
 
         results.append({
             "imgname":      imgname,
@@ -181,7 +202,7 @@ def main():
     args = parser.parse_args()
 
     saliency_tag = "with_saliency" if args.use_saliency else "no_saliency"
-    output_path  = f"./result_11/{args.model}_{args.setting}_{saliency_tag}.json"
+    output_path  = f"./hhhhh/{args.model}_{args.setting}_{saliency_tag}.json"
 
     with open(TEST_JSON, "r") as f:
         samples = json.load(f)[:args.max_samples] # load test samples, samples[0]["imgname"] = "1.png"
@@ -194,7 +215,7 @@ def main():
     model   = load_model(args.model)
     results = run_inference(model, samples, train_samples, args.setting, args.use_saliency)
 
-    Path("./result_11").mkdir(parents=True, exist_ok=True)
+    Path("./hhhhh").mkdir(parents=True, exist_ok=True)
     with open(output_path, "w") as f:
         json.dump(results, f, indent=2)
     print(f"Saved to {output_path}")
