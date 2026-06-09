@@ -32,7 +32,7 @@ def build_prompt_zeroshot(question: str, chart_img, heatmap_img=None) -> list:
         "content": [
             {"type": "text", "text": 
             "You are an expert chart analysis assistant.\n"
-            "Your task is to provide the precise final answer to the user's question.\n"
+            "Your task is to provide the answer to the user's question.\n"
             "Only return the final answer in a concise format that directly answers the question.\n"}
             ]
     }
@@ -41,15 +41,13 @@ def build_prompt_zeroshot(question: str, chart_img, heatmap_img=None) -> list:
         user = {
             "role": "user",
             "content": [
-                {"type": "image", "image": chart_img},
                 {"type": "image", "image": heatmap_img},
-                {"type": "text", "text": 
-                    "The first image is a chart. "
-                    "The second image is a saliency map highlighting regions relevant to the question.\n"
-                    "Use the saliency map to guide your attention to answer the following question.\n"
-                    f"Question: {question}\n\n"
-                    "Answer with only the final answer, don't provide any explanation or reasoning steps."
-                }
+                {"type": "text", "text":
+                "The image shows a chart with a human gaze/saliency map overlaid. "
+                "Warmer colors (red/yellow) indicate regions that humans tend to attend to when viewing this chart. "
+                "Use these highlighted regions to guide your attention when answering the question.\n"
+                f"Question: {question}\n"
+                "Provide only the final answer with no explanation."}
             ]
         }
     else:
@@ -167,6 +165,7 @@ def run_inference(model, samples, train_samples, setting, use_saliency):
             prompt = build_prompt_zeroshot(question, chart_img, heatmap_img if use_saliency else None)
             #
             print(f"Sample {i+1} | {imgname} | setting: {setting}")
+            print(os.path.join(TEST_HEATMAP, saliency_map))
             print(f"{'-'*60}")
             print(prompt)
             print(f"{'='*60}")
@@ -210,7 +209,7 @@ def main():
     args = parser.parse_args()
 
     saliency_tag = "with_saliency" if args.use_saliency else "no_saliency"
-    output_path  = f"./result_jsons/{args.model}_{args.setting}_{saliency_tag}.json"
+    output_path  = f"./result_jsons/{args.model}_{args.setting}_{saliency_tag}_overlay.json"
 
     with open(TEST_JSON, "r") as f:
         samples = json.load(f)[:args.max_samples] # load test samples, samples[0]["imgname"] = "1.png"

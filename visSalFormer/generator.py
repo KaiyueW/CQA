@@ -12,13 +12,11 @@ from PIL import Image
 import matplotlib.pyplot as plt
 import matplotlib.cm as cm
 
-def save_overlay(original_img_tensor, saliency_tensor, save_path):
-    # denormalize the images
-    mean = torch.tensor([0.485, 0.456, 0.406]).view(3,1,1)
-    std  = torch.tensor([0.229, 0.224, 0.225]).view(3,1,1)
-    img = original_img_tensor.cpu() * std + mean # [3,H,W]
-    img = img.permute(1,2,0).numpy() # [H,W,3]
-    img = np.clip(img, 0, 1)
+def save_overlay(original_img_path, saliency_tensor, save_path):
+    # load the original image
+    original_img = Image.open(original_img_path).convert("RGB")
+    origin_w, origin_h = original_img.size
+    img = np.array(original_img) / 255.0 # [H, W, 3], normalize to 0-1
 
     # saliency map → colormap
     sal = saliency_tensor.squeeze().cpu().numpy()  # [Height, Weight]
@@ -27,16 +25,16 @@ def save_overlay(original_img_tensor, saliency_tensor, save_path):
 
     # resize heatmap
     heatmap_pil = Image.fromarray((heatmap * 255).astype(np.uint8)) #resize tensor to uint8
-    heatmap_pil = heatmap_pil.resize((img.shape[1], img.shape[0]), Image.BILINEAR) #resize to origin img size
+    heatmap_pil = heatmap_pil.resize((origin_w, origin_h), Image.BILINEAR) #resize to origin img size
     heatmap = np.array(heatmap_pil) / 255.0 #resize tensor to float
 
     # overlay
-    overlay = 0.5 * img + 0.5 * heatmap
+    overlay = 0.3 * img + 0.7 * heatmap
     overlay = np.clip(overlay, 0, 1)
 
     plt.imsave(save_path, overlay)
 
-def evaluation(ckpt: str, device: str, batch_size: int, img_dir: str, json_path: str, output_dir: str):
+def evaluation(ckpt: str, device: str, batch_size: int, img_dir: str, json_path: str, output_dir: str, max_samples: int):
     from model_swin import SalFormer
     from transformers import BertModel
     from tokenizer_bert import padding_fn_eval
@@ -59,7 +57,7 @@ def evaluation(ckpt: str, device: str, batch_size: int, img_dir: str, json_path:
     dataset = ChartQADataset(
         img_dir = img_dir,
         json_path = json_path,
-        max_samples = args['max_samples']
+        max_samples = max_samples
     )
 
     test_dataloader = DataLoader(dataset, batch_size=batch_size, shuffle=False, collate_fn=padding_fn_eval, num_workers=8)
@@ -80,7 +78,8 @@ def evaluation(ckpt: str, device: str, batch_size: int, img_dir: str, json_path:
             stem = os.path.splitext(imgnames[i])[0] #"chart001.png" → "chart001"
             q_idx = query_counter[stem]          # which query number of this img
             save_path = f"{output_dir}/{stem}_Q{q_idx}.png"
-            save_overlay(img[i], preds[i], save_path)
+            img_path = os.path.join(img_dir, imgnames[i])
+            save_overlay(img_path, preds[i], save_path)
             query_counter[stem] += 1
         
     print("-------------Results saved to folder.-------------")
@@ -139,7 +138,7 @@ if __name__ == '__main__':
     parser.add_argument("--img_dir", type=str, default='train/png')
     parser.add_argument("--json_path", type=str, default='train/train_human.json')
     parser.add_argument("--max_samples", type=int, default=100)
-    parser.add_argument("--output_dir", type=str, default='./saliency_maps')
+    parser.add_argument("--output_dir", type=str, default='./saliency_haha_0.7_heatmap')
     args = vars(parser.parse_args())
 
     evaluation(device = args['device'], 
@@ -147,4 +146,5 @@ if __name__ == '__main__':
                batch_size = args['batch_size'], 
                img_dir=args['img_dir'],
                json_path=args['json_path'],
-               output_dir=args['output_dir'])
+               output_dir=args['output_dir'],
+               max_samples=args['max_samples'])
