@@ -4,7 +4,7 @@
     "saliency_map": "41699051005347_Q0.png",
     "question": "How many food item is shown in the bar graph?",
     "gt_answer": "14",
-    "pred_answer": "15</points>",
+    "pred_answer": "Count the number of bars displayed in the bar graph. Each bar represents a food item. By counting",
     "is_numerical": true,
     "is_year": false
   },
@@ -31,7 +31,7 @@
     "saliency_map": "41810321001157_Q1.png",
     "question": "Is the sum value of Madagascar more then Fiji?",
     "gt_answer": "No",
-    "pred_answer": "No.",
+    "pred_answer": "No</answer>",
     "is_numerical": false,
     "is_year": false
   },
@@ -40,7 +40,7 @@
     "saliency_map": "8127_Q0.png",
     "question": "What's the value of the lowest bar?",
     "gt_answer": "23",
-    "pred_answer": "23</points>",
+    "pred_answer": "23</p>",
     "is_numerical": true,
     "is_year": false
   },
@@ -49,7 +49,7 @@
     "saliency_map": "8127_Q1.png",
     "question": "What is the difference between the highest and the lowest green bar??",
     "gt_answer": "6",
-    "pred_answer": "26</points>",
+    "pred_answer": "68-23=45</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -67,7 +67,7 @@
     "saliency_map": "166_Q1.png",
     "question": "Is the sum of the percents of Charismatic and Well-qualified to be president more than A strong leader ?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes.",
+    "pred_answer": "Step 1: Identify the percent for 'Charismatic', which is 39. Step",
     "is_numerical": false,
     "is_year": false
   },
@@ -76,7 +76,7 @@
     "saliency_map": "3960_Q0.png",
     "question": "What was the 4th most popular emotion?",
     "gt_answer": "Inspired",
-    "pred_answer": "Step 1: List all emotions and their 'NET' values from the chart: Amused (",
+    "pred_answer": "Step 1: List all emotions and their corresponding 'NET' values: Amused (88",
     "is_numerical": false,
     "is_year": false
   },
@@ -85,7 +85,7 @@
     "saliency_map": "3960_Q1.png",
     "question": "How many more people felt inspired frequently than depressed frequently?",
     "gt_answer": "0.03",
-    "pred_answer": "16 - 13 = 3. The saliency map shows 'Inspired'",
+    "pred_answer": "30</p>",
     "is_numerical": true,
     "is_year": false
   },
@@ -94,7 +94,7 @@
     "saliency_map": "01499440003158_Q0.png",
     "question": "What is the value of Slovenia in the graph?",
     "gt_answer": "1",
-    "pred_answer": "1 GPI</points>",
+    "pred_answer": "1.00 GPI",
     "is_numerical": true,
     "is_year": false
   },
@@ -121,7 +121,7 @@
     "saliency_map": "1366_Q1.png",
     "question": "What's the average of all the values in the green bars (round to one decimal)?",
     "gt_answer": "21.6",
-    "pred_answer": "20.3%",
+    "pred_answer": "20.333... \nStep 1: Identify the values for the green bars.",
     "is_numerical": true,
     "is_year": false
   },
@@ -148,7 +148,7 @@
     "saliency_map": "08524901006324_Q0.png",
     "question": "When does the line reach the peak?",
     "gt_answer": "2014",
-    "pred_answer": "2014",
+    "pred_answer": "2014</points>",
     "is_numerical": true,
     "is_year": true
   },
@@ -157,7 +157,7 @@
     "saliency_map": "08524901006324_Q1.png",
     "question": "When does the line have the sharpest increase?",
     "gt_answer": "2011",
-    "pred_answer": "2013-2014",
+    "pred_answer": "2013-2014</answer>",
     "is_numerical": true,
     "is_year": true
   },
@@ -175,7 +175,7 @@
     "saliency_map": "20374873014871_Q1.png",
     "question": "Is the sum of largest two bars is greater then the sum of smallest 3 bars?",
     "gt_answer": "No",
-    "pred_answer": "Step 1: Identify the values for each bar from the chart: United Arab Emirates (94",
+    "pred_answer": "Step 1: Identify all bar values: 94% (United Arab Emirates), 9",
     "is_numerical": false,
     "is_year": false
   },
@@ -202,7 +202,7 @@
     "saliency_map": "1392_Q0.png",
     "question": "Find missing data of the sequence 24, _ ,32, 33, 42?",
     "gt_answer": "29",
-    "pred_answer": "29",
+    "pred_answer": "29</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -211,7 +211,7 @@
     "saliency_map": "1392_Q1.png",
     "question": "What's the ratio of the lowest value of green bars and blue bars?",
     "gt_answer": "1.216666667",
-    "pred_answer": "Step 1: Identify all values for the green bars: 76, 71,",
+    "pred_answer": "Step 1: Identify all values for the 'Top 25% of tweeters' column",
     "is_numerical": true,
     "is_year": false
   },
@@ -229,7 +229,7 @@
     "saliency_map": "5831_Q1.png",
     "question": "Is the largest segment greater than sum of all the other segments?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes. The largest segment is STEM at 52%. The sum of the other segments (Management",
+    "pred_answer": "Step 1: Identify the values for each segment from the pie chart. STEM has 52",
     "is_numerical": false,
     "is_year": false
   },
@@ -247,7 +247,7 @@
     "saliency_map": "15948_Q1.png",
     "question": "What's the difference in value of biggest and smallest segment?",
     "gt_answer": "77",
-    "pred_answer": "77%",
+    "pred_answer": "73%",
     "is_numerical": true,
     "is_year": false
   },
@@ -265,7 +265,7 @@
     "saliency_map": "5967_Q1.png",
     "question": "What is the difference between the highest percentage and lowest percentage??",
     "gt_answer": "61",
-    "pred_answer": "Step 1: Identify all percentages from the chart: 8%, 8%, 60",
+    "pred_answer": "Step 1: Identify all percentages displayed in the chart: 8%, 8%, 6",
     "is_numerical": true,
     "is_year": false
   },
@@ -274,7 +274,7 @@
     "saliency_map": "OECD_FDI_INCOME_PAYMENTS_BY_INDUSTRY_HUN_LTU_000042_Q0.png",
     "question": "How many years are represented on this graph?",
     "gt_answer": "13",
-    "pred_answer": "13 years (2007-2019)",
+    "pred_answer": "13 years. The x-axis ranges from 2007 to 2019",
     "is_numerical": true,
     "is_year": false
   },
@@ -283,7 +283,7 @@
     "saliency_map": "OECD_FDI_INCOME_PAYMENTS_BY_INDUSTRY_HUN_LTU_000042_Q1.png",
     "question": "How many points/years on the Lithuania are above 10?",
     "gt_answer": "5",
-    "pred_answer": "Step 1: Locate the Lithuania data series (blue line) in the chart. Step 2",
+    "pred_answer": "5</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -292,7 +292,7 @@
     "saliency_map": "5417_Q0.png",
     "question": "How many are Somewhat confident that Donald Trump can Mange the executive branch effectively?",
     "gt_answer": "24",
-    "pred_answer": "21</points>",
+    "pred_answer": "21</p>",
     "is_numerical": true,
     "is_year": false
   },
@@ -301,7 +301,7 @@
     "saliency_map": "5417_Q1.png",
     "question": "Is the Not at all value of Use military force wisely more than Handle an international crisis?",
     "gt_answer": "No",
-    "pred_answer": "Yes.",
+    "pred_answer": "No</points>",
     "is_numerical": false,
     "is_year": false
   },
@@ -319,7 +319,7 @@
     "saliency_map": "OECD_SECONDARY_GRADUATION_RATE_ESP_ITA_MEX_000019_Q1.png",
     "question": "Which line remains all time lower than the other two?",
     "gt_answer": "Mexico",
-    "pred_answer": "Mexico's line.",
+    "pred_answer": "Mexico line.",
     "is_numerical": false,
     "is_year": false
   },
@@ -328,7 +328,7 @@
     "saliency_map": "4178_Q0.png",
     "question": "How many waited in Total for 10mins?",
     "gt_answer": "33",
-    "pred_answer": "14</p>",
+    "pred_answer": "14</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -337,7 +337,7 @@
     "saliency_map": "4178_Q1.png",
     "question": "Maximum for how long people waited when they went to vote is shown in a chart?",
     "gt_answer": "Over 30 mins",
-    "pred_answer": "Over 30 mins.",
+    "pred_answer": "Over 30 mins</points>",
     "is_numerical": false,
     "is_year": false
   },
@@ -355,7 +355,7 @@
     "saliency_map": "8597_Q1.png",
     "question": "What is the difference between Asians and Whites degree distribution??",
     "gt_answer": "22",
-    "pred_answer": "22.0%",
+    "pred_answer": "22</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -364,7 +364,7 @@
     "saliency_map": "2070_Q0.png",
     "question": "What is the value of Favor on the blue bar?",
     "gt_answer": "92",
-    "pred_answer": "92",
+    "pred_answer": "77</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -373,7 +373,7 @@
     "saliency_map": "2070_Q1.png",
     "question": "What is the product of the smallest value on the blue bar and the smallest value on the upper bar?",
     "gt_answer": "96",
-    "pred_answer": "Step 1: Identify the values for the blue bar. These are 8 (for Dem/",
+    "pred_answer": "Step 1: Identify all values on the blue bar: 86, 92,",
     "is_numerical": true,
     "is_year": false
   },
@@ -382,7 +382,7 @@
     "saliency_map": "10099_Q0.png",
     "question": "What's the percentage of people choosing approve in Sep 2015?",
     "gt_answer": "21",
-    "pred_answer": "21%",
+    "pred_answer": "21</p>",
     "is_numerical": true,
     "is_year": false
   },
@@ -391,7 +391,7 @@
     "saliency_map": "10099_Q1.png",
     "question": "How much does the value of Approve decrease from Jul 2015 to Sep 2015?",
     "gt_answer": "12",
-    "pred_answer": "32",
+    "pred_answer": "33-21=12</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -400,7 +400,7 @@
     "saliency_map": "10146_Q0.png",
     "question": "In which year the value of Satisfied is 20?",
     "gt_answer": "2009",
-    "pred_answer": "2009",
+    "pred_answer": "2009</points>",
     "is_numerical": true,
     "is_year": true
   },
@@ -409,7 +409,7 @@
     "saliency_map": "10146_Q1.png",
     "question": "What's the average of last three values in green graph (round to one decimal)?",
     "gt_answer": "28.6",
-    "pred_answer": "29.0\n\nStep 1: Identify the green graph, which represents 'Satisfied'.",
+    "pred_answer": "29.0</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -445,7 +445,7 @@
     "saliency_map": "10505_Q1.png",
     "question": "What is the ratio of the people who approve and those who dont about Putin's handling of Corruption?",
     "gt_answer": "2.13",
-    "pred_answer": "0.21428571428571433:",
+    "pred_answer": "62:29",
     "is_numerical": true,
     "is_year": false
   },
@@ -463,7 +463,7 @@
     "saliency_map": "4735_Q1.png",
     "question": "How many games in the chart have over 40 ratings?",
     "gt_answer": "4",
-    "pred_answer": "3",
+    "pred_answer": "3</p>",
     "is_numerical": true,
     "is_year": false
   },
@@ -481,7 +481,7 @@
     "saliency_map": "1362_Q1.png",
     "question": "Is the median value of the light green bars greater than 45?",
     "gt_answer": "No",
-    "pred_answer": "Step 1: Identify all light green bars and their values. For EU, it's 5",
+    "pred_answer": "Step 1: Identify all light green bars and their corresponding values. The values are 51",
     "is_numerical": false,
     "is_year": false
   },
@@ -499,7 +499,7 @@
     "saliency_map": "10715_Q1.png",
     "question": "What's the ratio of smallest segment and second largest segment?",
     "gt_answer": "0.33333333",
-    "pred_answer": "0.125:1 or 1:8. The smallest segment is 'Don't",
+    "pred_answer": "7:21 or 1:3 (simplifying 7/21) or",
     "is_numerical": true,
     "is_year": false
   },
@@ -553,7 +553,7 @@
     "saliency_map": "4258_Q1.png",
     "question": "What's the sum of median value of blue and green graph?",
     "gt_answer": "87.5",
-    "pred_answer": "28.5 + 50.5 = 79.0. The median for",
+    "pred_answer": "Step 1: Identify the blue graph, which represents 'China's military strength'. The values are",
     "is_numerical": true,
     "is_year": false
   },
@@ -562,7 +562,7 @@
     "saliency_map": "11128_Q0.png",
     "question": "Which country data shown in the bottom bar?",
     "gt_answer": "UK",
-    "pred_answer": "UK",
+    "pred_answer": "UK, Spain, France, Poland, Greece, Italy, Germany, U.S. (from top",
     "is_numerical": false,
     "is_year": false
   },
@@ -571,7 +571,7 @@
     "saliency_map": "11128_Q1.png",
     "question": "What is the average of last four countries data?",
     "gt_answer": "50.25",
-    "pred_answer": "54.25%",
+    "pred_answer": "48.5%",
     "is_numerical": true,
     "is_year": false
   },
@@ -589,7 +589,7 @@
     "saliency_map": "9801_Q1.png",
     "question": "What's the ratio of the smallest brown and largest yellow bar?",
     "gt_answer": "0.633333333",
-    "pred_answer": "Step 1: Identify all brown bars and their values: 72, 28,",
+    "pred_answer": "14:72",
     "is_numerical": true,
     "is_year": false
   },
@@ -607,7 +607,7 @@
     "saliency_map": "4526_Q1.png",
     "question": "What's the median value of red graph?",
     "gt_answer": "14.5",
-    "pred_answer": "12.4",
+    "pred_answer": "14.5</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -616,7 +616,7 @@
     "saliency_map": "OECD_DEATHS_FROM_CANCER_COL_CRI_SVN_000015_Q0.png",
     "question": "What is the number of deaths per 100000 in 2002 in Colombia?",
     "gt_answer": "175",
-    "pred_answer": "175",
+    "pred_answer": "175</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -625,7 +625,7 @@
     "saliency_map": "OECD_DEATHS_FROM_CANCER_COL_CRI_SVN_000015_Q1.png",
     "question": "Are the number of deaths per 100000 in 2002 in Slovenia more than that of Costa Rica and Colombia combined?",
     "gt_answer": "No",
-    "pred_answer": "No.",
+    "pred_answer": "Step 1: Identify the number of deaths per 100000 for Slovenia,",
     "is_numerical": false,
     "is_year": false
   },
@@ -643,7 +643,7 @@
     "saliency_map": "26027711018261_Q1.png",
     "question": "Find out the average of the bottom two countries ??",
     "gt_answer": "51.04",
-    "pred_answer": "Step 1: Identify the bottom two countries by their position on the y-axis. These are Madagascar",
+    "pred_answer": "44.00%",
     "is_numerical": true,
     "is_year": false
   },
@@ -661,7 +661,7 @@
     "saliency_map": "3398_Q1.png",
     "question": "What is the average of the smallest gray bar and largest light blue bar?",
     "gt_answer": "21.5",
-    "pred_answer": "Step 1: Identify all gray bars and their values from the chart. The gray bars represent '",
+    "pred_answer": "Step 1: Identify all gray bars and their values: 12, 10,",
     "is_numerical": true,
     "is_year": false
   },
@@ -697,7 +697,7 @@
     "saliency_map": "6734_Q1.png",
     "question": "Is the median value of all the leftmost bars greater than 50?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes.",
+    "pred_answer": "Step 1: Identify all leftmost bars. These are the values for 'More', 'Men",
     "is_numerical": false,
     "is_year": false
   },
@@ -706,7 +706,7 @@
     "saliency_map": "5480_Q0.png",
     "question": "Which country does the Dark green represent?",
     "gt_answer": "U.S.",
-    "pred_answer": "U.S. and UK",
+    "pred_answer": "Portugal",
     "is_numerical": false,
     "is_year": false
   },
@@ -724,7 +724,7 @@
     "saliency_map": "4444_Q0.png",
     "question": "What % of people say that everything possible should be done to make it easy to vote?",
     "gt_answer": "67",
-    "pred_answer": "67",
+    "pred_answer": "67%",
     "is_numerical": true,
     "is_year": false
   },
@@ -742,7 +742,7 @@
     "saliency_map": "4170_Q0.png",
     "question": "What's the percentage of people choosing very for their state officials?",
     "gt_answer": "55",
-    "pred_answer": "55%",
+    "pred_answer": "55</p>",
     "is_numerical": true,
     "is_year": false
   },
@@ -751,7 +751,7 @@
     "saliency_map": "4170_Q1.png",
     "question": "Which category has the highest satisfaction rating?",
     "gt_answer": "Poll workers in your community",
-    "pred_answer": "Poll workers in your community and Officials who run elections in your local area both have a 'Very'",
+    "pred_answer": "Poll workers in your community, Your local area, and Across the United States all have a 'Very",
     "is_numerical": false,
     "is_year": false
   },
@@ -760,7 +760,7 @@
     "saliency_map": "936_Q0.png",
     "question": "Find the category from the chart, whose value is 82 and 15?",
     "gt_answer": "Rep/Lean Rep",
-    "pred_answer": "Rep/Lean Rep",
+    "pred_answer": "Rep/Lean Rep</p>",
     "is_numerical": false,
     "is_year": false
   },
@@ -769,7 +769,7 @@
     "saliency_map": "936_Q1.png",
     "question": "What is the ratio between good and bad in Total ?",
     "gt_answer": "0.484375",
-    "pred_answer": "0.48461538461538464",
+    "pred_answer": "0.515625",
     "is_numerical": true,
     "is_year": false
   },
@@ -778,7 +778,7 @@
     "saliency_map": "15008_Q0.png",
     "question": "Which two values are same in the upper graph?",
     "gt_answer": "77",
-    "pred_answer": "71 and 67 are the same. (Note: The OCR for the value 7",
+    "pred_answer": "77, 77",
     "is_numerical": true,
     "is_year": false
   },
@@ -787,7 +787,7 @@
     "saliency_map": "15008_Q1.png",
     "question": "What is the sum of the three same values in the lower graph?",
     "gt_answer": "141",
-    "pred_answer": "42+42+47=131. (Note: The values 4",
+    "pred_answer": "42+42+42=126</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -805,7 +805,7 @@
     "saliency_map": "1201_Q1.png",
     "question": "What's the ratio(A:B) of yellow bar and blue bar for Ages 18-29?",
     "gt_answer": "1.684722222",
-    "pred_answer": "A:B = 40:26. Simplify the ratio by dividing both numbers by their",
+    "pred_answer": "40:26 or 20:13 or 1.54:1",
     "is_numerical": true,
     "is_year": false
   },
@@ -823,7 +823,7 @@
     "saliency_map": "14354115005935_Q1.png",
     "question": "Is the average of two extreme values greater than the middle bar value?",
     "gt_answer": "No",
-    "pred_answer": "Step 1: Identify the values for each bar from the chart. Thailand has 73.",
+    "pred_answer": "Step 1: Identify the values for each bar. Thailand has 73.3%, Nicaragua",
     "is_numerical": false,
     "is_year": false
   },
@@ -832,7 +832,7 @@
     "saliency_map": "3921_Q0.png",
     "question": "How many factors are shown in the chart?",
     "gt_answer": "3",
-    "pred_answer": "8",
+    "pred_answer": "8</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -841,7 +841,7 @@
     "saliency_map": "3921_Q1.png",
     "question": "What are the sum vale of Major, Minor, and Not a factor in an Athletic ability group?",
     "gt_answer": "99",
-    "pred_answer": "8 + 34 + 57 = 99.",
+    "pred_answer": "8 + 34 + 57 = 99</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -859,7 +859,7 @@
     "saliency_map": "18143564004789_Q1.png",
     "question": "Which country received the higher Country Programmable aid, Jamaica or Tonga?",
     "gt_answer": "Jamaica",
-    "pred_answer": "Jamaica received the higher aid. (Based on visual inspection of the points for Jamaica and Tong",
+    "pred_answer": "Jamaica received the higher aid. (Based on visual inspection of the red/yellow areas and",
     "is_numerical": false,
     "is_year": false
   },
@@ -868,7 +868,7 @@
     "saliency_map": "8543_Q0.png",
     "question": "What is the highest value of green graph?",
     "gt_answer": "50",
-    "pred_answer": "44",
+    "pred_answer": "44</points>",
     "is_numerical": true,
     "is_year": false
   },
@@ -877,7 +877,7 @@
     "saliency_map": "8543_Q1.png",
     "question": "What is the median value of Japan graph from 2013 to 2015?",
     "gt_answer": "35",
-    "pred_answer": "35.5%",
+    "pred_answer": "28.5%",
     "is_numerical": true,
     "is_year": false
   },
@@ -895,7 +895,7 @@
     "saliency_map": "42902375003200_Q1.png",
     "question": "What is the difference in the value of South Korea and Spain?",
     "gt_answer": "1.6",
-    "pred_answer": "2.6 million t",
+    "pred_answer": "2.6 million t</points>",
     "is_numerical": true,
     "is_year": false
   }

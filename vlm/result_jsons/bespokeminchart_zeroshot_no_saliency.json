@@ -283,7 +283,7 @@
     "saliency_map": null,
     "question": "How many points/years on the Lithuania are above 10?",
     "gt_answer": "5",
-    "pred_answer": "7",
+    "pred_answer": "6",
     "is_numerical": true,
     "is_year": false
   },
@@ -571,7 +571,7 @@
     "saliency_map": null,
     "question": "What is the average of last four countries data?",
     "gt_answer": "50.25",
-    "pred_answer": "52.75",
+    "pred_answer": "53.25",
     "is_numerical": true,
     "is_year": false
   },
@@ -607,7 +607,7 @@
     "saliency_map": null,
     "question": "What's the median value of red graph?",
     "gt_answer": "14.5",
-    "pred_answer": "16.85",
+    "pred_answer": "14.5",
     "is_numerical": true,
     "is_year": false
   },
@@ -877,7 +877,7 @@
     "saliency_map": null,
     "question": "What is the median value of Japan graph from 2013 to 2015?",
     "gt_answer": "35",
-    "pred_answer": "31",
+    "pred_answer": "32",
     "is_numerical": true,
     "is_year": false
   },

@@ -20,7 +20,7 @@ TEST_JSON       = "../data/ChartQA_data/test/test_human_preprocessed.json"
 TRAIN_IMG_DIR   = "../data/ChartQA_data/test/png"
 TEST_IMG_DIR    = "../data/ChartQA_data/test/png"
 TRAIN_HEATMAP   = "../data/saliency_maps/ChartQA_test"
-TEST_HEATMAP    = "../saliency_haha_0.7_heatmap" # the saliency map dir for inference, you can change to the one you want.
+TEST_HEATMAP    = "../testingggg/saliency_haha_0.6_heatmap" # the saliency map dir for inference, you can change to the one you want.
 MAX_SAMPLES     = 100
 
 

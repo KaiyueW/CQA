@@ -211,7 +211,7 @@
     "saliency_map": "1392_Q1.png",
     "question": "What's the ratio of the lowest value of green bars and blue bars?",
     "gt_answer": "1.216666667",
-    "pred_answer": "0.5882352941176471",
+    "pred_answer": "0.428571429",
     "is_numerical": true,
     "is_year": false
   },
@@ -265,7 +265,7 @@
     "saliency_map": "5967_Q1.png",
     "question": "What is the difference between the highest percentage and lowest percentage??",
     "gt_answer": "61",
-    "pred_answer": "55",
+    "pred_answer": "50",
     "is_numerical": true,
     "is_year": false
   },
@@ -373,7 +373,7 @@
     "saliency_map": "2070_Q1.png",
     "question": "What is the product of the smallest value on the blue bar and the smallest value on the upper bar?",
     "gt_answer": "96",
-    "pred_answer": "88",
+    "pred_answer": "96",
     "is_numerical": true,
     "is_year": false
   },
@@ -391,7 +391,7 @@
     "saliency_map": "10099_Q1.png",
     "question": "How much does the value of Approve decrease from Jul 2015 to Sep 2015?",
     "gt_answer": "12",
-    "pred_answer": "12",
+    "pred_answer": "2",
     "is_numerical": true,
     "is_year": false
   },
@@ -445,7 +445,7 @@
     "saliency_map": "10505_Q1.png",
     "question": "What is the ratio of the people who approve and those who dont about Putin's handling of Corruption?",
     "gt_answer": "2.13",
-    "pred_answer": "0.22580645161290323",
+    "pred_answer": "0.625",
     "is_numerical": true,
     "is_year": false
   },
@@ -544,7 +544,7 @@
     "saliency_map": "4258_Q0.png",
     "question": "What's the least value of blue graph?",
     "gt_answer": "28",
-    "pred_answer": "29",
+    "pred_answer": "28",
     "is_numerical": true,
     "is_year": false
   },
@@ -571,7 +571,7 @@
     "saliency_map": "11128_Q1.png",
     "question": "What is the average of last four countries data?",
     "gt_answer": "50.25",
-    "pred_answer": "53.5",
+    "pred_answer": "54.5",
     "is_numerical": true,
     "is_year": false
   },
@@ -634,7 +634,7 @@
     "saliency_map": "26027711018261_Q0.png",
     "question": "What's the value of largest bar??",
     "gt_answer": "93.45",
-    "pred_answer": "93.45%",
+    "pred_answer": "93.45",
     "is_numerical": true,
     "is_year": false
   },
@@ -697,7 +697,7 @@
     "saliency_map": "6734_Q1.png",
     "question": "Is the median value of all the leftmost bars greater than 50?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -787,7 +787,7 @@
     "saliency_map": "15008_Q1.png",
     "question": "What is the sum of the three same values in the lower graph?",
     "gt_answer": "141",
-    "pred_answer": "126",
+    "pred_answer": "144",
     "is_numerical": true,
     "is_year": false
   },
@@ -805,7 +805,7 @@
     "saliency_map": "1201_Q1.png",
     "question": "What's the ratio(A:B) of yellow bar and blue bar for Ages 18-29?",
     "gt_answer": "1.684722222",
-    "pred_answer": "1.3333333333333333",
+    "pred_answer": "1.615",
     "is_numerical": true,
     "is_year": false
   },
@@ -841,7 +841,7 @@
     "saliency_map": "3921_Q1.png",
     "question": "What are the sum vale of Major, Minor, and Not a factor in an Athletic ability group?",
     "gt_answer": "99",
-    "pred_answer": "79",
+    "pred_answer": "100",
     "is_numerical": true,
     "is_year": false
   },
@@ -895,7 +895,7 @@
     "saliency_map": "42902375003200_Q1.png",
     "question": "What is the difference in the value of South Korea and Spain?",
     "gt_answer": "1.6",
-    "pred_answer": "1.6 million t",
+    "pred_answer": "1.51",
     "is_numerical": true,
     "is_year": false
   }

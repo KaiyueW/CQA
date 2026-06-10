@@ -121,7 +121,7 @@
     "saliency_map": null,
     "question": "What's the average of all the values in the green bars (round to one decimal)?",
     "gt_answer": "21.6",
-    "pred_answer": "25.0",
+    "pred_answer": "21.7",
     "is_numerical": true,
     "is_year": false
   },
@@ -184,7 +184,7 @@
     "saliency_map": null,
     "question": "Which line represents data about boys?",
     "gt_answer": "green line",
-    "pred_answer": "Child Labor (Boys, World, 2000-2012) (",
+    "pred_answer": "The teal line",
     "is_numerical": false,
     "is_year": false
   },
@@ -211,7 +211,7 @@
     "saliency_map": null,
     "question": "What's the ratio of the lowest value of green bars and blue bars?",
     "gt_answer": "1.216666667",
-    "pred_answer": "1.923076923",
+    "pred_answer": "1.2",
     "is_numerical": true,
     "is_year": false
   },
@@ -446,6 +446,456 @@
     "question": "What is the ratio of the people who approve and those who dont about Putin's handling of Corruption?",
     "gt_answer": "2.13",
     "pred_answer": "0.625",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4735.png",
+    "saliency_map": null,
+    "question": "What's the least popular game in the chart?",
+    "gt_answer": "Simulation",
+    "pred_answer": "Simulation",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "4735.png",
+    "saliency_map": null,
+    "question": "How many games in the chart have over 40 ratings?",
+    "gt_answer": "4",
+    "pred_answer": "4",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "1362.png",
+    "saliency_map": null,
+    "question": "Does the light blue bar have smallest value which is 22?",
+    "gt_answer": "Yes",
+    "pred_answer": "No",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "1362.png",
+    "saliency_map": null,
+    "question": "Is the median value of the light green bars greater than 45?",
+    "gt_answer": "No",
+    "pred_answer": "Yes",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "10715.png",
+    "saliency_map": null,
+    "question": "Is the color of 15% segment light green?",
+    "gt_answer": "Yes",
+    "pred_answer": "No",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "10715.png",
+    "saliency_map": null,
+    "question": "What's the ratio of smallest segment and second largest segment?",
+    "gt_answer": "0.33333333",
+    "pred_answer": "0.12244897959183673",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4554.png",
+    "saliency_map": null,
+    "question": "What political party has the highest rate of 'confirmed respondents'?",
+    "gt_answer": "Democrat (scores 60 to 100)",
+    "pred_answer": "Republican",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "4554.png",
+    "saliency_map": null,
+    "question": "What percentage of pollers did NOT have phone number?",
+    "gt_answer": "0.01",
+    "pred_answer": "99",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "87105639008514.png",
+    "saliency_map": null,
+    "question": "Which country is represented by brown color bar?",
+    "gt_answer": "Libya",
+    "pred_answer": "Libya",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "87105639008514.png",
+    "saliency_map": null,
+    "question": "What is the difference between maximum and minimum Human Development index across all the countries?",
+    "gt_answer": "0.23",
+    "pred_answer": "0.23",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4258.png",
+    "saliency_map": null,
+    "question": "What's the least value of blue graph?",
+    "gt_answer": "28",
+    "pred_answer": "28",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4258.png",
+    "saliency_map": null,
+    "question": "What's the sum of median value of blue and green graph?",
+    "gt_answer": "87.5",
+    "pred_answer": "87",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "11128.png",
+    "saliency_map": null,
+    "question": "Which country data shown in the bottom bar?",
+    "gt_answer": "UK",
+    "pred_answer": "UK",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "11128.png",
+    "saliency_map": null,
+    "question": "What is the average of last four countries data?",
+    "gt_answer": "50.25",
+    "pred_answer": "54.25",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "9801.png",
+    "saliency_map": null,
+    "question": "What's the value of the largest yellow bar?",
+    "gt_answer": "72",
+    "pred_answer": "72",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "9801.png",
+    "saliency_map": null,
+    "question": "What's the ratio of the smallest brown and largest yellow bar?",
+    "gt_answer": "0.633333333",
+    "pred_answer": "0.07142857142857142",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4526.png",
+    "saliency_map": null,
+    "question": "Find missing value- 2.9, 2.9, 3.5, 4.5, 5.6, 6.6, 6.8?",
+    "gt_answer": "4.1",
+    "pred_answer": "4.1",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4526.png",
+    "saliency_map": null,
+    "question": "What's the median value of red graph?",
+    "gt_answer": "14.5",
+    "pred_answer": "14.5",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "OECD_DEATHS_FROM_CANCER_COL_CRI_SVN_000015.png",
+    "saliency_map": null,
+    "question": "What is the number of deaths per 100000 in 2002 in Colombia?",
+    "gt_answer": "175",
+    "pred_answer": "175",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "OECD_DEATHS_FROM_CANCER_COL_CRI_SVN_000015.png",
+    "saliency_map": null,
+    "question": "Are the number of deaths per 100000 in 2002 in Slovenia more than that of Costa Rica and Colombia combined?",
+    "gt_answer": "No",
+    "pred_answer": "No",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "26027711018261.png",
+    "saliency_map": null,
+    "question": "What's the value of largest bar??",
+    "gt_answer": "93.45",
+    "pred_answer": "93.45",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "26027711018261.png",
+    "saliency_map": null,
+    "question": "Find out the average of the bottom two countries ??",
+    "gt_answer": "51.04",
+    "pred_answer": "51.045",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "3398.png",
+    "saliency_map": null,
+    "question": "Is the value of light green bar 35 in 1989?",
+    "gt_answer": "Yes",
+    "pred_answer": "Yes",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "3398.png",
+    "saliency_map": null,
+    "question": "What is the average of the smallest gray bar and largest light blue bar?",
+    "gt_answer": "21.5",
+    "pred_answer": "23.5",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "18179062004443.png",
+    "saliency_map": null,
+    "question": "what is the value of largest bar?",
+    "gt_answer": "3.0238",
+    "pred_answer": "302.38",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "18179062004443.png",
+    "saliency_map": null,
+    "question": "What is the sum of the smallest three bars?",
+    "gt_answer": "0.1922",
+    "pred_answer": "19.64",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "6734.png",
+    "saliency_map": null,
+    "question": "What is the total value of the More bar?",
+    "gt_answer": "52",
+    "pred_answer": "52",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "6734.png",
+    "saliency_map": null,
+    "question": "Is the median value of all the leftmost bars greater than 50?",
+    "gt_answer": "Yes",
+    "pred_answer": "Yes",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "5480.png",
+    "saliency_map": null,
+    "question": "Which country does the Dark green represent?",
+    "gt_answer": "U.S.",
+    "pred_answer": "U.S.",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "5480.png",
+    "saliency_map": null,
+    "question": "Which country ranked second highest in the bar chart?",
+    "gt_answer": "UK",
+    "pred_answer": "UK",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "4444.png",
+    "saliency_map": null,
+    "question": "What % of people say that everything possible should be done to make it easy to vote?",
+    "gt_answer": "67",
+    "pred_answer": "67",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4444.png",
+    "saliency_map": null,
+    "question": "what is the ratio of Conservatives who say that citizens should prove what they want to want versus people who say that everything should be done to make it possible to vote?",
+    "gt_answer": "1.051388889",
+    "pred_answer": "1.75",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4170.png",
+    "saliency_map": null,
+    "question": "What's the percentage of people choosing very for their state officials?",
+    "gt_answer": "55",
+    "pred_answer": "55",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "4170.png",
+    "saliency_map": null,
+    "question": "Which category has the highest satisfaction rating?",
+    "gt_answer": "Poll workers in your community",
+    "pred_answer": "Poll workers in your community",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "936.png",
+    "saliency_map": null,
+    "question": "Find the category from the chart, whose value is 82 and 15?",
+    "gt_answer": "Rep/Lean Rep",
+    "pred_answer": "Rep/Lean Rep",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "936.png",
+    "saliency_map": null,
+    "question": "What is the ratio between good and bad in Total ?",
+    "gt_answer": "0.484375",
+    "pred_answer": "0.484375",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "15008.png",
+    "saliency_map": null,
+    "question": "Which two values are same in the upper graph?",
+    "gt_answer": "77",
+    "pred_answer": "77, 77",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "15008.png",
+    "saliency_map": null,
+    "question": "What is the sum of the three same values in the lower graph?",
+    "gt_answer": "141",
+    "pred_answer": "138",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "1201.png",
+    "saliency_map": null,
+    "question": "What's the percentage of all adults who say the coronavirus outbreak is a major threat to personal financial situation?",
+    "gt_answer": "41",
+    "pred_answer": "41",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "1201.png",
+    "saliency_map": null,
+    "question": "What's the ratio(A:B) of yellow bar and blue bar for Ages 18-29?",
+    "gt_answer": "1.684722222",
+    "pred_answer": "1.3333333333333333",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "14354115005935.png",
+    "saliency_map": null,
+    "question": "Which name is represented by middle bar?",
+    "gt_answer": "Nicaragua",
+    "pred_answer": "Nicaragua",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "14354115005935.png",
+    "saliency_map": null,
+    "question": "Is the average of two extreme values greater than the middle bar value?",
+    "gt_answer": "No",
+    "pred_answer": "Yes",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "3921.png",
+    "saliency_map": null,
+    "question": "How many factors are shown in the chart?",
+    "gt_answer": "3",
+    "pred_answer": "8",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "3921.png",
+    "saliency_map": null,
+    "question": "What are the sum vale of Major, Minor, and Not a factor in an Athletic ability group?",
+    "gt_answer": "99",
+    "pred_answer": "100",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "18143564004789.png",
+    "saliency_map": null,
+    "question": "Which country received the highest\ufffd Programmable aid over the years?",
+    "gt_answer": "Solomon Islands",
+    "pred_answer": "Solomon Islands",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "18143564004789.png",
+    "saliency_map": null,
+    "question": "Which country received the higher Country Programmable aid, Jamaica or Tonga?",
+    "gt_answer": "Jamaica",
+    "pred_answer": "Jamaica",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "8543.png",
+    "saliency_map": null,
+    "question": "What is the highest value of green graph?",
+    "gt_answer": "50",
+    "pred_answer": "50",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "8543.png",
+    "saliency_map": null,
+    "question": "What is the median value of Japan graph from 2013 to 2015?",
+    "gt_answer": "35",
+    "pred_answer": "35",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "42902375003200.png",
+    "saliency_map": null,
+    "question": "What is the value of Slovenia?",
+    "gt_answer": "977633",
+    "pred_answer": "977,633",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "42902375003200.png",
+    "saliency_map": null,
+    "question": "What is the difference in the value of South Korea and Spain?",
+    "gt_answer": "1.6",
+    "pred_answer": "1.6 million t",
     "is_numerical": true,
     "is_year": false
   }

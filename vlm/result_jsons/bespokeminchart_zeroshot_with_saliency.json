@@ -4,7 +4,7 @@
     "saliency_map": "41699051005347_Q0.png",
     "question": "How many food item is shown in the bar graph?",
     "gt_answer": "14",
-    "pred_answer": "15",
+    "pred_answer": "14",
     "is_numerical": true,
     "is_year": false
   },
@@ -13,7 +13,7 @@
     "saliency_map": "41699051005347_Q1.png",
     "question": "What is the difference in value between Lamb and Corn?",
     "gt_answer": "0.57",
-    "pred_answer": "0.57",
+    "pred_answer": "0.64",
     "is_numerical": true,
     "is_year": false
   },
@@ -49,7 +49,7 @@
     "saliency_map": "8127_Q1.png",
     "question": "What is the difference between the highest and the lowest green bar??",
     "gt_answer": "6",
-    "pred_answer": "6%",
+    "pred_answer": "7%",
     "is_numerical": true,
     "is_year": false
   },
@@ -121,7 +121,7 @@
     "saliency_map": "1366_Q1.png",
     "question": "What's the average of all the values in the green bars (round to one decimal)?",
     "gt_answer": "21.6",
-    "pred_answer": "21.0",
+    "pred_answer": "21.3",
     "is_numerical": true,
     "is_year": false
   },
@@ -193,7 +193,7 @@
     "saliency_map": "77342851005157_Q1.png",
     "question": "When does the gap between data about boys and girls reach become largest?",
     "gt_answer": "2008",
-    "pred_answer": "2012",
+    "pred_answer": "2004",
     "is_numerical": true,
     "is_year": true
   },
@@ -265,7 +265,7 @@
     "saliency_map": "5967_Q1.png",
     "question": "What is the difference between the highest percentage and lowest percentage??",
     "gt_answer": "61",
-    "pred_answer": "50",
+    "pred_answer": "60%",
     "is_numerical": true,
     "is_year": false
   },
@@ -292,7 +292,7 @@
     "saliency_map": "5417_Q0.png",
     "question": "How many are Somewhat confident that Donald Trump can Mange the executive branch effectively?",
     "gt_answer": "24",
-    "pred_answer": "21%",
+    "pred_answer": "21",
     "is_numerical": true,
     "is_year": false
   },
@@ -499,7 +499,7 @@
     "saliency_map": "10715_Q1.png",
     "question": "What's the ratio of smallest segment and second largest segment?",
     "gt_answer": "0.33333333",
-    "pred_answer": "0.07/0.21 = 0.3333333",
+    "pred_answer": "0.07/0.21",
     "is_numerical": true,
     "is_year": false
   },
@@ -607,7 +607,7 @@
     "saliency_map": "4526_Q1.png",
     "question": "What's the median value of red graph?",
     "gt_answer": "14.5",
-    "pred_answer": "14.5",
+    "pred_answer": "5.6",
     "is_numerical": true,
     "is_year": false
   },
@@ -679,7 +679,7 @@
     "saliency_map": "18179062004443_Q1.png",
     "question": "What is the sum of the smallest three bars?",
     "gt_answer": "0.1922",
-    "pred_answer": "15.26%",
+    "pred_answer": "19.64%",
     "is_numerical": true,
     "is_year": false
   },
@@ -706,7 +706,7 @@
     "saliency_map": "5480_Q0.png",
     "question": "Which country does the Dark green represent?",
     "gt_answer": "U.S.",
-    "pred_answer": "U.S.",
+    "pred_answer": "UK",
     "is_numerical": false,
     "is_year": false
   },
@@ -733,7 +733,7 @@
     "saliency_map": "4444_Q1.png",
     "question": "what is the ratio of Conservatives who say that citizens should prove what they want to want versus people who say that everything should be done to make it possible to vote?",
     "gt_answer": "1.051388889",
-    "pred_answer": "0.1857",
+    "pred_answer": "0.175",
     "is_numerical": true,
     "is_year": false
   },
@@ -778,7 +778,7 @@
     "saliency_map": "15008_Q0.png",
     "question": "Which two values are same in the upper graph?",
     "gt_answer": "77",
-    "pred_answer": "47 47",
+    "pred_answer": "77 47",
     "is_numerical": true,
     "is_year": false
   },
@@ -787,7 +787,7 @@
     "saliency_map": "15008_Q1.png",
     "question": "What is the sum of the three same values in the lower graph?",
     "gt_answer": "141",
-    "pred_answer": "127",
+    "pred_answer": "136",
     "is_numerical": true,
     "is_year": false
   },

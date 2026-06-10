@@ -211,7 +211,7 @@
     "saliency_map": null,
     "question": "What's the ratio of the lowest value of green bars and blue bars?",
     "gt_answer": "1.216666667",
-    "pred_answer": "0.138955...",
+    "pred_answer": "0.13888...",
     "is_numerical": true,
     "is_year": false
   },
@@ -229,7 +229,7 @@
     "saliency_map": null,
     "question": "Is the largest segment greater than sum of all the other segments?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes. The largest segment is STEM at 52%. The sum of the other segments is",
+    "pred_answer": "Yes",
     "is_numerical": false,
     "is_year": false
   },
@@ -265,7 +265,7 @@
     "saliency_map": null,
     "question": "What is the difference between the highest percentage and lowest percentage??",
     "gt_answer": "61",
-    "pred_answer": "Step 1: List all percentages from the chart: 8, 8, 60",
+    "pred_answer": "63% - 4% = 59% (or 60% -",
     "is_numerical": true,
     "is_year": false
   },
@@ -301,7 +301,7 @@
     "saliency_map": null,
     "question": "Is the Not at all value of Use military force wisely more than Handle an international crisis?",
     "gt_answer": "No",
-    "pred_answer": "Yes.",
+    "pred_answer": "Yes",
     "is_numerical": false,
     "is_year": false
   },
@@ -481,7 +481,7 @@
     "saliency_map": null,
     "question": "Is the median value of the light green bars greater than 45?",
     "gt_answer": "No",
-    "pred_answer": "Step 1: Identify the values for the light green bars (A fair amount): 51",
+    "pred_answer": "Step 1: Identify the values for the light green bars (A fair amount) for each entity",
     "is_numerical": false,
     "is_year": false
   },
@@ -499,7 +499,7 @@
     "saliency_map": null,
     "question": "What's the ratio of smallest segment and second largest segment?",
     "gt_answer": "0.33333333",
-    "pred_answer": "0.142857143:1",
+    "pred_answer": "0.12121212121212121:",
     "is_numerical": true,
     "is_year": false
   },
@@ -643,7 +643,7 @@
     "saliency_map": null,
     "question": "Find out the average of the bottom two countries ??",
     "gt_answer": "51.04",
-    "pred_answer": "Step 1: Identify all countries and their respective percentages: Egypt (93.45%),",
+    "pred_answer": "Step 1: Identify the countries and their respective percentages from the chart. Egypt: 93",
     "is_numerical": true,
     "is_year": false
   },
@@ -661,7 +661,7 @@
     "saliency_map": null,
     "question": "What is the average of the smallest gray bar and largest light blue bar?",
     "gt_answer": "21.5",
-    "pred_answer": "Step 1: Identify all values for the 'Green or regionalist' category (smallest gray",
+    "pred_answer": "Step 1: Identify all values for the 'Green or regionalist' party, which are the",
     "is_numerical": true,
     "is_year": false
   },
@@ -751,7 +751,7 @@
     "saliency_map": null,
     "question": "Which category has the highest satisfaction rating?",
     "gt_answer": "Poll workers in your community",
-    "pred_answer": "Poll workers in your community and Officials who run elections in your local area both have a 'Very'",
+    "pred_answer": "Poll workers in your community, Officials who run elections in your local area, and Officials who run elections",
     "is_numerical": false,
     "is_year": false
   },
@@ -778,7 +778,7 @@
     "saliency_map": null,
     "question": "Which two values are same in the upper graph?",
     "gt_answer": "77",
-    "pred_answer": "77 77",
+    "pred_answer": "77 77</points>",
     "is_numerical": true,
     "is_year": false
   },

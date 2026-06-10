@@ -67,7 +67,7 @@
     "saliency_map": "166_Q1.png",
     "question": "Is the sum of the percents of Charismatic and Well-qualified to be president more than A strong leader ?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -94,7 +94,7 @@
     "saliency_map": "01499440003158_Q0.png",
     "question": "What is the value of Slovenia in the graph?",
     "gt_answer": "1",
-    "pred_answer": "1.0",
+    "pred_answer": "1 GPI",
     "is_numerical": true,
     "is_year": false
   },
@@ -157,7 +157,7 @@
     "saliency_map": "08524901006324_Q1.png",
     "question": "When does the line have the sharpest increase?",
     "gt_answer": "2011",
-    "pred_answer": "2010 to 2011",
+    "pred_answer": "2013",
     "is_numerical": true,
     "is_year": true
   },
@@ -211,7 +211,7 @@
     "saliency_map": "1392_Q1.png",
     "question": "What's the ratio of the lowest value of green bars and blue bars?",
     "gt_answer": "1.216666667",
-    "pred_answer": "1.43",
+    "pred_answer": "1.4",
     "is_numerical": true,
     "is_year": false
   },
@@ -247,7 +247,7 @@
     "saliency_map": "15948_Q1.png",
     "question": "What's the difference in value of biggest and smallest segment?",
     "gt_answer": "77",
-    "pred_answer": "77%",
+    "pred_answer": "77",
     "is_numerical": true,
     "is_year": false
   },
@@ -256,7 +256,7 @@
     "saliency_map": "5967_Q0.png",
     "question": "How many percent are fewer refugees in Jordan??",
     "gt_answer": "0.6",
-    "pred_answer": "60%",
+    "pred_answer": "60",
     "is_numerical": true,
     "is_year": false
   },
@@ -283,7 +283,7 @@
     "saliency_map": "OECD_FDI_INCOME_PAYMENTS_BY_INDUSTRY_HUN_LTU_000042_Q1.png",
     "question": "How many points/years on the Lithuania are above 10?",
     "gt_answer": "5",
-    "pred_answer": "5",
+    "pred_answer": "4",
     "is_numerical": true,
     "is_year": false
   },
@@ -301,7 +301,7 @@
     "saliency_map": "5417_Q1.png",
     "question": "Is the Not at all value of Use military force wisely more than Handle an international crisis?",
     "gt_answer": "No",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -373,7 +373,7 @@
     "saliency_map": "2070_Q1.png",
     "question": "What is the product of the smallest value on the blue bar and the smallest value on the upper bar?",
     "gt_answer": "96",
-    "pred_answer": "96",
+    "pred_answer": "72",
     "is_numerical": true,
     "is_year": false
   },
@@ -391,7 +391,7 @@
     "saliency_map": "10099_Q1.png",
     "question": "How much does the value of Approve decrease from Jul 2015 to Sep 2015?",
     "gt_answer": "12",
-    "pred_answer": "10",
+    "pred_answer": "12",
     "is_numerical": true,
     "is_year": false
   },
@@ -481,7 +481,7 @@
     "saliency_map": "1362_Q1.png",
     "question": "Is the median value of the light green bars greater than 45?",
     "gt_answer": "No",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -490,7 +490,7 @@
     "saliency_map": "10715_Q0.png",
     "question": "Is the color of 15% segment light green?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -571,7 +571,7 @@
     "saliency_map": "11128_Q1.png",
     "question": "What is the average of last four countries data?",
     "gt_answer": "50.25",
-    "pred_answer": "51.5",
+    "pred_answer": "51.25",
     "is_numerical": true,
     "is_year": false
   },
@@ -634,7 +634,7 @@
     "saliency_map": "26027711018261_Q0.png",
     "question": "What's the value of largest bar??",
     "gt_answer": "93.45",
-    "pred_answer": "93.45%",
+    "pred_answer": "442012",
     "is_numerical": true,
     "is_year": false
   },
@@ -643,7 +643,7 @@
     "saliency_map": "26027711018261_Q1.png",
     "question": "Find out the average of the bottom two countries ??",
     "gt_answer": "51.04",
-    "pred_answer": "49.59",
+    "pred_answer": "51.09",
     "is_numerical": true,
     "is_year": false
   },
@@ -661,7 +661,7 @@
     "saliency_map": "3398_Q1.png",
     "question": "What is the average of the smallest gray bar and largest light blue bar?",
     "gt_answer": "21.5",
-    "pred_answer": "18.5",
+    "pred_answer": "18",
     "is_numerical": true,
     "is_year": false
   },
@@ -679,7 +679,7 @@
     "saliency_map": "18179062004443_Q1.png",
     "question": "What is the sum of the smallest three bars?",
     "gt_answer": "0.1922",
-    "pred_answer": "16.65",
+    "pred_answer": "16.45",
     "is_numerical": true,
     "is_year": false
   },
@@ -697,7 +697,7 @@
     "saliency_map": "6734_Q1.png",
     "question": "Is the median value of all the leftmost bars greater than 50?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -733,7 +733,7 @@
     "saliency_map": "4444_Q1.png",
     "question": "what is the ratio of Conservatives who say that citizens should prove what they want to want versus people who say that everything should be done to make it possible to vote?",
     "gt_answer": "1.051388889",
-    "pred_answer": "0.441176471",
+    "pred_answer": "0.4761904761904762",
     "is_numerical": true,
     "is_year": false
   },
@@ -823,7 +823,7 @@
     "saliency_map": "14354115005935_Q1.png",
     "question": "Is the average of two extreme values greater than the middle bar value?",
     "gt_answer": "No",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },

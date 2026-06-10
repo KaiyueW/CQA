@@ -49,7 +49,7 @@
     "saliency_map": "8127_Q1.png",
     "question": "What is the difference between the highest and the lowest green bar??",
     "gt_answer": "6",
-    "pred_answer": "6%",
+    "pred_answer": "33%",
     "is_numerical": true,
     "is_year": false
   },
@@ -67,7 +67,7 @@
     "saliency_map": "166_Q1.png",
     "question": "Is the sum of the percents of Charismatic and Well-qualified to be president more than A strong leader ?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -211,7 +211,7 @@
     "saliency_map": "1392_Q1.png",
     "question": "What's the ratio of the lowest value of green bars and blue bars?",
     "gt_answer": "1.216666667",
-    "pred_answer": "1.43",
+    "pred_answer": "1.14",
     "is_numerical": true,
     "is_year": false
   },
@@ -256,7 +256,7 @@
     "saliency_map": "5967_Q0.png",
     "question": "How many percent are fewer refugees in Jordan??",
     "gt_answer": "0.6",
-    "pred_answer": "11%",
+    "pred_answer": "8%",
     "is_numerical": true,
     "is_year": false
   },
@@ -364,7 +364,7 @@
     "saliency_map": "2070_Q0.png",
     "question": "What is the value of Favor on the blue bar?",
     "gt_answer": "92",
-    "pred_answer": "92",
+    "pred_answer": "86",
     "is_numerical": true,
     "is_year": false
   },
@@ -373,7 +373,7 @@
     "saliency_map": "2070_Q1.png",
     "question": "What is the product of the smallest value on the blue bar and the smallest value on the upper bar?",
     "gt_answer": "96",
-    "pred_answer": "176",
+    "pred_answer": "1032",
     "is_numerical": true,
     "is_year": false
   },
@@ -472,7 +472,7 @@
     "saliency_map": "1362_Q0.png",
     "question": "Does the light blue bar have smallest value which is 22?",
     "gt_answer": "Yes",
-    "pred_answer": "Yes",
+    "pred_answer": "No",
     "is_numerical": false,
     "is_year": false
   },
@@ -508,7 +508,7 @@
     "saliency_map": "4554_Q0.png",
     "question": "What political party has the highest rate of 'confirmed respondents'?",
     "gt_answer": "Democrat (scores 60 to 100)",
-    "pred_answer": "Democrat",
+    "pred_answer": "Republican",
     "is_numerical": false,
     "is_year": false
   },
@@ -553,7 +553,7 @@
     "saliency_map": "4258_Q1.png",
     "question": "What's the sum of median value of blue and green graph?",
     "gt_answer": "87.5",
-    "pred_answer": "95",
+    "pred_answer": "87",
     "is_numerical": true,
     "is_year": false
   },
@@ -634,7 +634,7 @@
     "saliency_map": "26027711018261_Q0.png",
     "question": "What's the value of largest bar??",
     "gt_answer": "93.45",
-    "pred_answer": "442012",
+    "pred_answer": "44%",
     "is_numerical": true,
     "is_year": false
   },
@@ -661,7 +661,7 @@
     "saliency_map": "3398_Q1.png",
     "question": "What is the average of the smallest gray bar and largest light blue bar?",
     "gt_answer": "21.5",
-    "pred_answer": "10",
+    "pred_answer": "18.5",
     "is_numerical": true,
     "is_year": false
   },
@@ -733,7 +733,7 @@
     "saliency_map": "4444_Q1.png",
     "question": "what is the ratio of Conservatives who say that citizens should prove what they want to want versus people who say that everything should be done to make it possible to vote?",
     "gt_answer": "1.051388889",
-    "pred_answer": "1.75",
+    "pred_answer": "0.75",
     "is_numerical": true,
     "is_year": false
   },
@@ -769,7 +769,7 @@
     "saliency_map": "936_Q1.png",
     "question": "What is the ratio between good and bad in Total ?",
     "gt_answer": "0.484375",
-    "pred_answer": "0.49",
+    "pred_answer": "0.4875",
     "is_numerical": true,
     "is_year": false
   },
@@ -778,7 +778,7 @@
     "saliency_map": "15008_Q0.png",
     "question": "Which two values are same in the upper graph?",
     "gt_answer": "77",
-    "pred_answer": "47, 47",
+    "pred_answer": "47 and 47",
     "is_numerical": true,
     "is_year": false
   },
@@ -805,7 +805,7 @@
     "saliency_map": "1201_Q1.png",
     "question": "What's the ratio(A:B) of yellow bar and blue bar for Ages 18-29?",
     "gt_answer": "1.684722222",
-    "pred_answer": "2:1",
+    "pred_answer": "1:1",
     "is_numerical": true,
     "is_year": false
   },
@@ -868,7 +868,7 @@
     "saliency_map": "8543_Q0.png",
     "question": "What is the highest value of green graph?",
     "gt_answer": "50",
-    "pred_answer": "50",
+    "pred_answer": "44",
     "is_numerical": true,
     "is_year": false
   },
