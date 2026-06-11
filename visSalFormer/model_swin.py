@@ -91,7 +91,7 @@ class SalFormer(torch.nn.Module):
 
     def forward(self, img, q_inputs):
 
-        img_features =  self.vit.forward(img, return_dict =True)["last_hidden_state"] # 最终输出, [B, 50, 768]
+        img_features =  self.vit.forward(img, return_dict =True)["last_hidden_state"] # 最终输出, [B, 50, 768] 768 is the feature dimension for each token, 50 tokens (49 image tokens + CLS token)
         with torch.no_grad():
             text_features =  self.bert(**q_inputs)["last_hidden_state"] #size is [Batch, max_seq_len, 768]
             # text_features =  torch.unsqueeze(bert_output["last_hidden_state"][:,0,:], 1)

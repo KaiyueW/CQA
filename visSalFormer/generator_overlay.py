@@ -16,21 +16,23 @@ def save_overlay(original_img_path, saliency_tensor, save_path):
     # load the original image
     original_img = Image.open(original_img_path).convert("RGB")
     origin_w, origin_h = original_img.size
-    img = np.array(original_img) / 255.0 # [H, W, 3], normalize to 0-1
+    img = np.array(original_img) / 255.0 # [H, W, 3], normalize to 0-1. 3 means RGB channels
+    print(f"Original shape: {img.shape}")  # (Height, Weight, 3)
 
     # saliency map → colormap
-    sal = saliency_tensor.squeeze().cpu().numpy()  # [Height, Weight]
+    sal = saliency_tensor.squeeze().cpu().numpy()  # [128, 128]
     sal = (sal - sal.min()) / (sal.max() - sal.min() + 1e-10)  # normalize to 0-1
-    heatmap = cm.jet(sal)[:, :, :3]  # [H, W, 3], low->blue, high->red
+    heatmap = cm.jet(sal)[:, :, :3]  # [128, 128, 3], low->blue, high->red
 
     # resize heatmap
     heatmap_pil = Image.fromarray((heatmap * 255).astype(np.uint8)) #resize tensor to uint8
-    heatmap_pil = heatmap_pil.resize((origin_w, origin_h), Image.BILINEAR) #resize to origin img size
+    heatmap_pil = heatmap_pil.resize((origin_w, origin_h), Image.BICUBIC) #resize to origin img size
     heatmap = np.array(heatmap_pil) / 255.0 #resize tensor to float
-
+   
     # overlay
-    overlay = 0.3 * img + 0.7 * heatmap
+    overlay = 0.5 * img + 0.5 * heatmap
     overlay = np.clip(overlay, 0, 1)
+    print(f"Overlay shape: {overlay.shape}")  # (Height, Weight, 3)
 
     plt.imsave(save_path, overlay)
 
@@ -67,12 +69,12 @@ def evaluation(ckpt: str, device: str, batch_size: int, img_dir: str, json_path:
     Path(output_dir).mkdir(parents=True, exist_ok=True)
     query_counter = defaultdict(int)
 
-    for batch, (img, input_ids, imgnames, labels) in enumerate(test_dataloader): #for each example in the test dataset
+    for batch, (img, query_ids, imgnames, labels) in enumerate(test_dataloader): #for each example in the test dataset
         img = img.to(device)
-        input_ids = {k: v.to(device) for k, v in input_ids.items()}
+        query_ids = {k: v.to(device) for k, v in query_ids.items()}
 
         with torch.no_grad():
-            preds = model(img, input_ids) # predicted saliency maps
+            preds = model(img, query_ids) # predicted saliency maps
 
         for i in range(preds.shape[0]):
             stem = os.path.splitext(imgnames[i])[0] #"chart001.png" → "chart001"
@@ -138,7 +140,7 @@ if __name__ == '__main__':
     parser.add_argument("--img_dir", type=str, default='train/png')
     parser.add_argument("--json_path", type=str, default='train/train_human.json')
     parser.add_argument("--max_samples", type=int, default=100)
-    parser.add_argument("--output_dir", type=str, default='./saliency_haha_0.7_heatmap')
+    parser.add_argument("--output_dir", type=str, default='./ChartQA_train')
     args = vars(parser.parse_args())
 
     evaluation(device = args['device'], 
