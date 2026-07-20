@@ -95,7 +95,6 @@ class ChartQAKNNRetriever:
         return cls_feats.detach().cpu()
 
     def _precompute_image_features(self):
-        """Encode every training image and cache the normalized feature matrix [Num_train, D]."""
         features = []
         loader = DataLoader(
             self.dataset,
@@ -111,25 +110,9 @@ class ChartQAKNNRetriever:
         return torch.cat(features) #concat all batches into a single tensor of shape [N_train, D]
 
     def save_image_features(self, path):
-        """Persist precomputed features so you don't recompute them every run."""
         torch.save(self.image_features, path)
 
     def retrieve(self, test_image, test_query, num_examples, do_reverse=False):
-        """
-        Retrieve the top `num_examples` training examples for ONE test sample.
-
-        Args:
-            test_image (PIL.Image): the test chart image.
-            test_query (str): the test question text.
-            num_examples (int): how many few-shot examples to return.
-            do_reverse (bool): if True, return with the closest match LAST
-                                (handy when building a prompt where you want
-                                the most relevant example nearest the query).
-
-        Returns:
-            List[dict]: each dict has keys "image", "imgname", "query", "label",
-                        taken directly from the training dataset.
-        """
         with torch.no_grad():
             # ---- Stage 1: image similarity over the whole training pool ----
             query_img_feat = self._encode_images_dinov2([test_image])  # [1, D]

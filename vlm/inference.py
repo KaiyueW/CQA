@@ -24,7 +24,7 @@ TRAIN_HEATMAP   = "../data/saliency_maps/ChartQA_train"
 TEST_HEATMAP    = "../data/saliency_maps/ChartQA_test" # the saliency map dir for inference, you can change to the one you want.
 MAX_SAMPLES     = 100
 
-KNN_JSON        = "./output/dinov2_sentencetransform_knn_fewshot_examples.json" # the retrieval results for few-shot examples.
+KNN_JSON        = "./output/weighted_siglip_siglip_fewshot_examples.json" # the retrieval results for few-shot examples.
 
 # Prompt builders 
 def build_prompt_zeroshot(question: str, chart_img, heatmap_img=None) -> list:
@@ -231,7 +231,7 @@ def main():
     args = parser.parse_args()
 
     saliency_tag = "with_saliency" if args.use_saliency else "no_saliency"
-    output_path  = f"./fewshots/{args.model}_{args.setting}_{saliency_tag}_twostep_dinov2_sentence_{args.num_shot}.json"
+    output_path  = f"./fewshots/{args.model}_{args.setting}_{saliency_tag}_weighted_siglip_siglip_{args.num_shot}.json"
 
     with open(TEST_JSON, "r") as f:
         samples = json.load(f)[:args.max_samples] # load test samples, samples[0]["imgname"] = "1.png"
@@ -255,4 +255,4 @@ if __name__ == "__main__":
     main()
 
 # python inference.py --model qwen3vl  --setting fewshot --num_shot 3 --max_samples 1
-# python evaluation.py --result_path ./fewshots/qwen3vl_fewshot_no_saliency_openclip_3.json
+# python evaluation.py --result_path ./fewshots/qwen3vl_fewshot_no_saliency_weighted_siglip_siglip_3.json
