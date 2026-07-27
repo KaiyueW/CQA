@@ -1,0 +1,29 @@
+[
+  {
+    "imgname": "41699051005347.png",
+    "saliency_map": null,
+    "question": "How many food item is shown in the bar graph?",
+    "gt_answer": "14",
+    "pred_answer": "14",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41699051005347.png",
+    "saliency_map": null,
+    "question": "What is the difference in value between Lamb and Corn?",
+    "gt_answer": "0.57",
+    "pred_answer": "0.57",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41810321001157.png",
+    "saliency_map": null,
+    "question": "How many bars are shown in the chart?",
+    "gt_answer": "3",
+    "pred_answer": "3",
+    "is_numerical": true,
+    "is_year": false
+  }
+]

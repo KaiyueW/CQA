@@ -20,7 +20,7 @@ class Qwen3VL(BaseVLM):
         print(f"Loaded: {self.MODEL_ID}")
         return self
 
-    def generate(self, conversation: list) -> str:
+    def generate(self, conversation: list, max_new_tokens: int) -> str:
         inputs = self.processor.apply_chat_template(
             conversation,
             tokenize=True,
@@ -35,7 +35,7 @@ class Qwen3VL(BaseVLM):
         with torch.no_grad():
             output_ids = self.model.generate(
                 **inputs,
-                max_new_tokens=20,
+                max_new_tokens=max_new_tokens,
                 do_sample=False
             )
 

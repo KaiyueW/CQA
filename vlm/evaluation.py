@@ -16,8 +16,13 @@ def extract_number(text: str) -> float:
     try:
         cleaned = text.replace(',', '').strip('%')
         result = sympify(cleaned)
+    # === CHANGE ===
+        if not hasattr(result, "is_number"):
+            return None
+    # === END CHANGE ===
         if result.is_number:
-            return float(result)
+            return float(result)   
+        return None
     except (SympifyError, TypeError):
         pass
 

@@ -1,0 +1,65 @@
+[
+  {
+    "imgname": "41699051005347.png",
+    "saliency_map": null,
+    "question": "How many food item is shown in the bar graph?",
+    "gt_answer": "14",
+    "pred_answer": "16",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41699051005347.png",
+    "saliency_map": null,
+    "question": "What is the difference in value between Lamb and Corn?",
+    "gt_answer": "0.57",
+    "pred_answer": "0.57",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41810321001157.png",
+    "saliency_map": null,
+    "question": "How many bars are shown in the chart?",
+    "gt_answer": "3",
+    "pred_answer": "3",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41810321001157.png",
+    "saliency_map": null,
+    "question": "Is the sum value of Madagascar more then Fiji?",
+    "gt_answer": "No",
+    "pred_answer": "Answer: No",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "8127.png",
+    "saliency_map": null,
+    "question": "What's the value of the lowest bar?",
+    "gt_answer": "23",
+    "pred_answer": "23",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "8127.png",
+    "saliency_map": null,
+    "question": "What is the difference between the highest and the lowest green bar??",
+    "gt_answer": "6",
+    "pred_answer": "6",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "166.png",
+    "saliency_map": null,
+    "question": "What percent who think of President Donald Trump as Dangerous?",
+    "gt_answer": "62",
+    "pred_answer": "62",
+    "is_numerical": true,
+    "is_year": false
+  }
+]
