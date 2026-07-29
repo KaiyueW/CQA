@@ -24,7 +24,7 @@ TRAIN_HEATMAP   = "../data/saliency_maps/ChartQA_train"
 TEST_HEATMAP    = "../data/saliency_maps/ChartQA_test" # the saliency map dir for inference, you can change to the one you want.
 MAX_SAMPLES     = 100
 
-KNN_JSON        = "./fewshot_egs/twostep_dinov2_openai_knn_fewshot_examples.json" # the retrieval results for few-shot examples.
+KNN_JSON        = "./fewshot_egs/weighted_siglip_siglip_fewshot_examples.json" # the retrieval results for few-shot examples.
 
 # Prompt builders 
 # === CHANGE === new constant: the instruction used in step 2 to force a clean final answer
@@ -231,8 +231,8 @@ def run_inference(model, samples, knn_json, num_shot, setting, use_saliency):
 
             final_prompt      = build_final_answer_prompt(step1_prompt, analysis_text)
             predicted_answer  = model.generate(final_prompt, max_new_tokens=20)
-            print(f"for {imgname}\nthe prompt is {analysis_text}\nthe predicted answer is {predicted_answer}\nthe ground truth answer is {gt_answer}")
-            print("-----------------------------------------")
+            # print(f"for {imgname}\nthe prompt is {final_prompt}\nthe predicted answer is {predicted_answer}\nthe ground truth answer is {gt_answer}")
+            # print("-----------------------------------------")
 
         results.append({
             "imgname":      imgname,
@@ -259,7 +259,7 @@ def main():
     args = parser.parse_args()
 
     saliency_tag = "with_saliency" if args.use_saliency else "no_saliency"
-    output_path  = f"./results/{args.model}_{args.setting}_{saliency_tag}_fewshot_reasoning_openai_{args.num_shot}.json"
+    output_path  = f"./results/{args.model}_{args.setting}_{saliency_tag}_reasoning_weighted_siglip_{args.num_shot}.json"
 
     with open(TEST_JSON, "r") as f:
         samples = json.load(f)[:args.max_samples] # load test samples, samples[0]["imgname"] = "1.png"
@@ -282,5 +282,5 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python inference_update.py --model internvl  --setting zeroshot --num_shot 3 --max_samples 3
-# python evaluation.py --result_path ./results/qwen3vl_zeroshot_no_saliency_weighted_siglip_update_3.json
+# python inference_update.py --model internvl  --setting fewshot --num_shot 6 --max_samples 3
+# python evaluation.py --result_path ./results/internvl_fewshot_no_saliency_fewshot_reasoning_sentence_2step_3.json

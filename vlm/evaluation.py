@@ -75,7 +75,7 @@ def is_correct(gt, pred, is_numerical, is_year):
     if is_numerical:
         gt_num = float(gt.strip().replace(',', '').strip('%')) # no %
         pred_num = extract_number(pred) # no %
-        # print(f"-----Extracted numbers: GT={gt_num}, Pred={pred_num}")
+        print(f"-----Extracted numbers: GT={gt_num}, Pred={pred_num}")
         if gt_num is None or pred_num is None:
             return False
         if is_year: # for year answers, allow absolute error of 1 year
@@ -89,7 +89,7 @@ def is_correct(gt, pred, is_numerical, is_year):
 
     else: 
         pred_text = extract_text(pred)
-        # (f"-----Extracted text: GT={gt}, Pred={pred_text}")
+        print(f"-----Extracted text: GT={gt}, Pred={pred_text}")
         return is_textual_correct(gt, pred_text)
 
 
@@ -115,11 +115,11 @@ def main():
         is_numerical = result["is_numerical"]
         is_year = result["is_year"]
         i = i+1
-        # print("========================================================================")
+        #print("========================================================================")
         #print(f"-----Result {i}: gt_answer={gt}, pred_answer={pred}, is_numerical={is_numerical}, is_year={is_year}")
         
         correct = is_correct(gt, pred, is_numerical, is_year)
-        # print(f"-----Correct: {correct}")
+        print(f"-----Correct: {correct}")
         total_correct += correct
 
         if is_numerical:
