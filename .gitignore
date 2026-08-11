@@ -4,6 +4,25 @@ visSalFormer/VisSalFormer_weights.tar
 *.pth
 *.pkl
 
+# 忽略所有 checkpoint 和权重目录
+checkpoints/
+vlm_checkpoints/
+finetune/checkpoints/
+finetune/vlm_checkpoints/
+
+# 忽略常见模型权重与优化器大文件
+*.safetensors
+*.pt
+*.pth
+*.bin
+*.ckpt
+*.onnx
+
+# 忽略训练日志与 TensorBoard 文件
+runs/
+*.tfevents.*
+*.jsonl
+
 # =========================================================================
 # 3. 忽略 Python 缓存、虚拟环境和系统临时文件
 # =========================================================================

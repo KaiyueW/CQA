@@ -20,7 +20,7 @@ TEST_JSON       = "../data/ChartQA_data/test/test_human_preprocessed.json"
 TRAIN_IMG_DIR   = "../data/ChartQA_data/test/png"
 TEST_IMG_DIR    = "../data/ChartQA_data/test/png"
 TRAIN_HEATMAP   = "../data/saliency_maps/ChartQA_test"
-TEST_HEATMAP    = "../data/hhhhh" # the saliency map dir for inference, you can change to the one you want.
+TEST_HEATMAP    = "../data/saliency_maps/ChartQA_test" # the saliency map dir for inference, you can change to the one you want.
 MAX_SAMPLES     = 30
 
 
@@ -31,10 +31,12 @@ def build_prompt_zeroshot(question: str, chart_img, heatmap_img=None) -> list:
         "role": "system",
         "content": [
             {"type": "text", "text": 
-            "You are an expert chart analysis assistant.\n"
-            "Your task is to provide the answer to the user's question.\n"
-            "Only return the final answer in a concise format that directly answers the question.\n"}
-            ]
+            "You are an expert chart question answering assistant.\n"
+            "You will be given a chart with a saliency map overlaid.\n"
+            "The saliency map represents human attention when answering the question, highlighting regions humans are likely to focus on.\n"
+            "Use these highlighted regions to guide your attention when answering the question\n"
+            "Answer the question only based on the given image. Do not use external knowledge or assumptions.\n"
+            "Return ONLY the final answer. Do not include explanation or reasoning.\n" }]
     }
 
     if heatmap_img is not None:
@@ -43,11 +45,8 @@ def build_prompt_zeroshot(question: str, chart_img, heatmap_img=None) -> list:
             "content": [
                 {"type": "image", "image": heatmap_img},
                 {"type": "text", "text":
-                "The image shows a chart with a human gaze/saliency map overlaid. "
-                "Warmer colors (red/yellow) indicate regions that humans tend to attend to when viewing this chart. "
-                "Use these highlighted regions to guide your attention when answering the question.\n"
-                f"Question: {question}\n"
-                "Provide only the final answer with no explanation."}
+                "This is the chart with the saliency map overlaid.\n"
+                f"Answer this question based on the image: {question}\n"}
             ]
         }
     else:
@@ -170,7 +169,7 @@ def run_inference(model, samples, train_samples, setting, use_saliency):
             # print(prompt)
             # print(f"{'='*60}")
             #
-            predicted_answer = model.generate(prompt)
+            predicted_answer = model.generate(prompt, max_new_tokens=20)
 
         elif setting == "fewshot":
             raw_examples = retrieve_examples(train_samples, sample)
@@ -202,7 +201,7 @@ def run_inference(model, samples, train_samples, setting, use_saliency):
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("--model", choices=["llava15", "chartr1", "internvl", "qwen3vl", "bespokeminchart"], default="llava15")
+    parser.add_argument("--model", choices=["llava15", "chartr1", "internvl", "qwen3vl", "bespokeminchart", "qwen3vl_finetuned_saliency"], default="llava15")
     parser.add_argument("--setting", choices=["zeroshot", "fewshot"],  default="zeroshot")
     parser.add_argument("--use_saliency", action="store_true")
     parser.add_argument("--max_samples",  type=int, default=MAX_SAMPLES)
@@ -231,4 +230,4 @@ def main():
 if __name__ == "__main__":
     main()
 
-# python inference_only_overlay.py --model qwen3vl --setting zeroshot --use_saliency
+# python inference_only_overlay.py --model qwen3vl_finetuned_saliency --setting zeroshot --use_saliency

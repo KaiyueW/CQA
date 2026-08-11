@@ -17,8 +17,8 @@ def is_year(label: str) -> bool:
         return False
 
 
-JSON_PATH   = "../data/ChartQA_data/test/test_augmented.json"
-OUTPUT_PATH = "../data/ChartQA_data/test/test_augmented_preprocessed.json"
+JSON_PATH   = "../data/ChartQA_data/train/train_augmented.json"
+OUTPUT_PATH = "../data/ChartQA_data/train/train_augmented_preprocessed.json"
 
 with open(JSON_PATH, "r") as f:
     data = json.load(f)

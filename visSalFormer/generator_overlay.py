@@ -17,7 +17,7 @@ def save_overlay(original_img_path, saliency_tensor, save_path):
     original_img = Image.open(original_img_path).convert("RGB")
     origin_w, origin_h = original_img.size
     img = np.array(original_img) / 255.0 # [H, W, 3], normalize to 0-1. 3 means RGB channels
-    print(f"Original shape: {img.shape}")  # (Height, Weight, 3)
+    #print(f"Original shape: {img.shape}")  # (Height, Weight, 3)
 
     # saliency map → colormap
     sal = saliency_tensor.squeeze().cpu().numpy()  # [128, 128]
@@ -32,7 +32,7 @@ def save_overlay(original_img_path, saliency_tensor, save_path):
     # overlay
     overlay = 0.5 * img + 0.5 * heatmap
     overlay = np.clip(overlay, 0, 1)
-    print(f"Overlay shape: {overlay.shape}")  # (Height, Weight, 3)
+    #print(f"Overlay shape: {overlay.shape}")  # (Height, Weight, 3)
 
     plt.imsave(save_path, overlay)
 
@@ -90,12 +90,12 @@ def evaluation(ckpt: str, device: str, batch_size: int, img_dir: str, json_path:
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("--device", type=str, default='cuda')
-    parser.add_argument("--ckpt", type=str, default='./ckpt/model_bert_freeze_10kl_5cc_2nss.tar')
+    parser.add_argument("--ckpt", type=str, default='./VisSalFormer_weights.tar')
     parser.add_argument("--batch_size", type=int, default=16)
-    parser.add_argument("--img_dir", type=str, default='train/png')
-    parser.add_argument("--json_path", type=str, default='train/train_human.json')
+    parser.add_argument("--img_dir", type=str, default='../data/ChartQA_data/test/png')
+    parser.add_argument("--json_path", type=str, default='../data/ChartQA_data/test/test_all_preprocessed.json')
     parser.add_argument("--max_samples", type=int, default=None)
-    parser.add_argument("--output_dir", type=str, default='./ChartQA_train')
+    parser.add_argument("--output_dir", type=str, default='../data/saliency_maps/ChartQA_test_all')
     args = vars(parser.parse_args())
 
     evaluation(device = args['device'], 

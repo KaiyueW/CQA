@@ -50,3 +50,10 @@ class Qwen3VL(BaseVLM):
         )
 
         return response.strip()
+
+# subclass of Qwen3VL to load the finetuned model
+class Qwen3VLFinetunedBaseline(Qwen3VL):
+    MODEL_ID = "/ubc/cs/research/nlp-raid/students/kwang67/VisSalFormer/finetune/checkpoints/projector_llm/qwen3vl_no_saliency/qwen3vl_no_saliency_merged"
+
+class Qwen3VLFinetunedSaliency(Qwen3VL):
+    MODEL_ID = "/ubc/cs/research/nlp-raid/students/kwang67/VisSalFormer/finetune/checkpoints/projector_llm/qwen3vl_saliency/qwen3vl_saliency_merged"

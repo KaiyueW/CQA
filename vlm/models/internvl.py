@@ -46,3 +46,10 @@ class InternVL3(BaseVLM):
         )
 
         return response.strip()
+
+
+class InternVLFinetunedBaseline(InternVL3):
+    MODEL_ID = "/ubc/cs/research/nlp-raid/students/kwang67/VisSalFormer/finetune/vlm_checkpoints/internvl_baseline_lora/internvl_baseline_merged"
+
+class InternVLFinetunedSaliency(InternVL3):
+    MODEL_ID = "/ubc/cs/research/nlp-raid/students/kwang67/VisSalFormer/finetune/vlm_checkpoints/internvl_saliency_lora/internvl_saliency_merged"
