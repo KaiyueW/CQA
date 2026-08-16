@@ -92,10 +92,10 @@ if __name__ == '__main__':
     parser.add_argument("--device", type=str, default='cuda')
     parser.add_argument("--ckpt", type=str, default='./VisSalFormer_weights.tar')
     parser.add_argument("--batch_size", type=int, default=16)
-    parser.add_argument("--img_dir", type=str, default='../data/ChartQA_data/test/png')
-    parser.add_argument("--json_path", type=str, default='../data/ChartQA_data/test/test_all_preprocessed.json')
+    parser.add_argument("--img_dir", type=str, default='../data/ChartQA_data/train/png')
+    parser.add_argument("--json_path", type=str, default='../data/ChartQA_data/train/train_all_preprocessed1.json')
     parser.add_argument("--max_samples", type=int, default=None)
-    parser.add_argument("--output_dir", type=str, default='../data/saliency_maps/ChartQA_test_all')
+    parser.add_argument("--output_dir", type=str, default='1')
     args = vars(parser.parse_args())
 
     evaluation(device = args['device'], 

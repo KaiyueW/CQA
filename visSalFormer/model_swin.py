@@ -89,7 +89,7 @@ class SalFormer(torch.nn.Module):
     #     self.vit.train(mode)
     #     self.bert.train(mode)
 
-    def forward(self, img, q_inputs):
+    def forward(self, img, q_inputs, return_latent_features=False):
 
         img_features =  self.vit.forward(img, return_dict =True)["last_hidden_state"] # 最终输出, [B, 50, 768] 768 is the feature dimension for each token, 50 tokens (49 image tokens + CLS token)
         with torch.no_grad():
@@ -110,9 +110,16 @@ class SalFormer(torch.nn.Module):
 
         features = self.dense1(features)
         latent_features = self.relu1(features)
+        #print(f"latent_features shape: {latent_features.shape}")  # [B, 59, 768]
+        print(f"latent_features for {img.shape[0]}: {latent_features}")  # [B, 59, 768]
+
+        if return_latent_features:
+            return latent_features   # [16, 49, 768] — already exactly the token format you want
 
         latent_features = latent_features.permute(0,2,1)
-        out = torch.reshape(latent_features, (features.shape[0], self.feature_dim, 7, 7)) # 7*7*768
+        out = torch.reshape(latent_features, (features.shape[0], self.feature_dim, 7, 7)) #[B, 768, 7, 7]
+        #print(f"out shape: {out.shape}")  # [B, 768, 7, 7]
+        #print("-----------------------------")
         out = self.decoder(out) #[B, 1, 128, 128]
 
         return out
