@@ -1,12 +1,13 @@
 """
 Data-pipeline smoke test -- NOT part of the real training run.
 
-Deliberately does NOT load the full Qwen3-VL 8B model or the VisSalFormer
-checkpoint (slow, needs a GPU with real memory). Only exercises the parts
-that are cheap and easy to get wrong:
-  1. ChartQASaliencyDataset.__getitem__  -- prompt construction, tokenization
+Deliberately does NOT load the full Qwen3-VL 8B model (slow, needs a GPU
+with real memory). Only exercises the parts that are cheap and easy to get
+wrong:
+  1. ChartQASaliencyDataset.__getitem__  -- prompt construction, tokenization,
+                                              loading precomputed saliency latents
   2. SaliencyCollator.__call__            -- placeholder insertion, label
-                                              masking, saliency preprocessing
+                                              masking, latent stacking
 
 Run:
     python smoke_test_data_pipeline.py
@@ -18,6 +19,7 @@ os.environ["HF_HOME"] = "/ubc/cs/research/nlp-raid/students/kwang67/.cache/huggi
 os.environ["HF_HUB_CACHE"] = "/ubc/cs/research/nlp-raid/students/kwang67/.cache/huggingface/hub"
 os.environ["XDG_CACHE_HOME"] = "/ubc/cs/research/nlp-raid/students/kwang67/.cache"
 
+import torch
 from transformers import AutoProcessor, AutoTokenizer
 
 from data_collator import add_saliency_token, SaliencyCollator, NUM_SALIENCY_TOKENS
@@ -26,11 +28,12 @@ from chartqa_dataset import ChartQASaliencyDataset
 MODEL_ID = "Qwen/Qwen3-VL-8B-Instruct"
 VISION_END_TOKEN_STR = "<|vision_end|>"
 
-BERT_CKPT = "bert-base-uncased"
-BERT_CACHE_DIR = "/tmp/kwang67_cache"
 TRAIN_JSON_PATH = "../data/ChartQA_data/train/train_all_preprocessed1.json"
 TRAIN_IMG_DIR = "../data/ChartQA_data/train/png"
-VISSALFORMER_CKPT_PATH = "../visSalFormer/VisSalFormer_weights.tar"
+# precomputed saliency latents live here now -- one <stem>.pt per chart,
+# produced offline by precompute_saliency_latents.py. This replaces the
+# old on-the-fly VisSalFormerLatentExtractor call in STEP 5.
+LATENT_DIR = "./saliency_latents/train"
 
 BATCH_SIZE = 2  # small, just enough to exercise padding logic
 
@@ -58,6 +61,7 @@ def main():
         json_path=TRAIN_JSON_PATH,
         img_dir=TRAIN_IMG_DIR,
         processor=processor,
+        latent_dir=LATENT_DIR,
         max_samples=BATCH_SIZE,
     )
     print(f"dataset size (after max_samples cap) = {len(dataset)}")
@@ -66,7 +70,6 @@ def main():
 
     for i, ex in enumerate(raw_samples):
         print(f"\n--- raw sample {i} (BEFORE collator, no saliency placeholders yet) ---")
-        print(f"question_text: {ex['question_text']}")
         print(f"input_ids length: {len(ex['input_ids'])}")
         print(f"labels length:    {len(ex['labels'])}")
         print(f"mm_token_type_ids length: {len(ex['mm_token_type_ids'])}")
@@ -80,16 +83,15 @@ def main():
         answer_only_ids = [t for t, l in zip(ex["input_ids"], ex["labels"]) if l != -100]
         decoded_answer = processor.tokenizer.decode(answer_only_ids, skip_special_tokens=True)
         print(f"decoded ANSWER-only tokens (should match ground-truth label): '{decoded_answer}'")
+        print(f"saliency_latent shape (loaded from disk): {tuple(ex['saliency_latent'].shape)}")
 
     print("\n" + "=" * 70)
     print("STEP 3: build collator, run it on this mini-batch")
     print("=" * 70)
-    bert_tokenizer = AutoTokenizer.from_pretrained(BERT_CKPT, cache_dir=BERT_CACHE_DIR)
     collator = SaliencyCollator(
         processor=processor,
         vision_end_token_id=vision_end_token_id,
         saliency_token_id=saliency_token_id,
-        bert_tokenizer=bert_tokenizer,
         num_saliency_tokens=NUM_SALIENCY_TOKENS,
         pad_token_id=tokenizer.pad_token_id or 0,
     )
@@ -99,10 +101,7 @@ def main():
     print(f"batched labels shape:         {batch['labels'].shape}")
     print(f"batched attention_mask shape: {batch['attention_mask'].shape}")
     print(f"batched mm_token_type_ids shape: {batch['mm_token_type_ids'].shape}")
-    print(f"batched saliency_pixel_values shape: {batch['saliency_pixel_values'].shape}")
-    print(f"saliency_q_inputs keys: {list(batch['saliency_q_inputs'].keys())}")
-    for k, v in batch["saliency_q_inputs"].items():
-        print(f"  saliency_q_inputs['{k}'].shape = {v.shape}")
+    print(f"batched saliency_latents shape: {batch['saliency_latents'].shape}")
 
     print("\n" + "=" * 70)
     print("STEP 4: verify saliency placeholder insertion, per sample")
@@ -134,33 +133,18 @@ def main():
         print(f"  all saliency positions masked to -100 in labels: "
               f"{'OK' if all_masked else '*** MISMATCH, got: ' + str(sal_labels) + ' ***'}")
 
-    print("\nSmoke test finished (data pipeline only -- see STEP 5 below for VisSalFormer itself).")
-
     print("\n" + "=" * 70)
-    print("STEP 5: load FROZEN VisSalFormer, run it on the batch's saliency inputs")
+    print("STEP 5: sanity-check the PRECOMPUTED saliency latents in the batch")
     print("=" * 70)
-    print("(This loads Swin-tiny + BERT-base + SalFormer -- much lighter than")
-    print(" the 8B Qwen3-VL, so still fast. Still NOT loading Qwen3-VL itself.)")
+    print("(No VisSalFormer/BERT loaded here anymore -- latents were already")
+    print(" computed offline by precompute_saliency_latents.py and are just")
+    print(" being read off disk by the dataset + stacked by the collator.)")
 
-    import torch
-    from vissalformer_loading import load_frozen_vissalformer
-    from saliency_extractor import VisSalFormerLatentExtractor
+    latent_tokens = batch["saliency_latents"]
 
-    device = "cuda" if torch.cuda.is_available() else "cpu"
-    print(f"using device: {device}")
-
-    vissalformer = load_frozen_vissalformer(ckpt_path=VISSALFORMER_CKPT_PATH, device=device)
-    extractor = VisSalFormerLatentExtractor(vissalformer)
-
-    saliency_pixel_values = batch["saliency_pixel_values"].to(device)
-    saliency_q_inputs = {k: v.to(device) for k, v in batch["saliency_q_inputs"].items()}
-
-    latent_tokens = extractor(saliency_pixel_values, saliency_q_inputs)  # [B, 49, 768]
-
-    print(f"\nlatent_tokens shape: {latent_tokens.shape} "
-          f"(expected [{BATCH_SIZE}, 49, 768])")
+    print(f"\nlatent_tokens shape: {tuple(latent_tokens.shape)} "
+          f"(expected ({BATCH_SIZE}, 49, 768))")
     print(f"latent_tokens dtype: {latent_tokens.dtype}")
-    print(f"latent_tokens.requires_grad: {latent_tokens.requires_grad} (expected False -- frozen, no_grad)")
 
     has_nan = torch.isnan(latent_tokens).any().item()
     has_inf = torch.isinf(latent_tokens).any().item()
@@ -172,15 +156,17 @@ def main():
           f"min={latent_tokens.min().item():.4f}, "
           f"max={latent_tokens.max().item():.4f}")
 
-    # relu1 is the last op in return_latent_features=True branch of SalFormer,
-    # so every value should be >= 0 -- if you see negatives here, something
-    # upstream (e.g. checkpoint loading) is off.
+    # relu1 was the last op in SalFormer's return_latent_features=True branch
+    # when these were precomputed, so every value should still be >= 0 --
+    # if you see negatives here, something in precompute_saliency_latents.py
+    # (or the .pt files themselves) is off.
     all_non_negative = (latent_tokens >= 0).all().item()
     print(f"all values >= 0 (SalFormer's last op is ReLU): "
           f"{'OK' if all_non_negative else '*** MISMATCH, ReLU output should never be negative ***'}")
 
-    # sanity check the two samples in the batch don't produce identical
-    # latents (would suggest images/questions aren't actually varying input)
+    # sanity check the samples in the batch don't produce identical latents
+    # (would suggest every .pt file is loading the same cached tensor, e.g.
+    # a stem-collision bug in precompute_saliency_latents.py)
     if BATCH_SIZE >= 2:
         identical = torch.allclose(latent_tokens[0], latent_tokens[1])
         print(f"sample 0 and sample 1 latents identical: "

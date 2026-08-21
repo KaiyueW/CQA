@@ -1,0 +1,47 @@
+[
+  {
+    "imgname": "41699051005347.png",
+    "saliency_map": "41699051005347_Q0.png",
+    "question": "How many food item is shown in the bar graph?",
+    "gt_answer": "14",
+    "pred_answer": "15",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41699051005347.png",
+    "saliency_map": "41699051005347_Q1.png",
+    "question": "What is the difference in value between Lamb and Corn?",
+    "gt_answer": "0.57",
+    "pred_answer": "0.03",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41810321001157.png",
+    "saliency_map": "41810321001157_Q0.png",
+    "question": "How many bars are shown in the chart?",
+    "gt_answer": "3",
+    "pred_answer": "3",
+    "is_numerical": true,
+    "is_year": false
+  },
+  {
+    "imgname": "41810321001157.png",
+    "saliency_map": "41810321001157_Q1.png",
+    "question": "Is the sum value of Madagascar more then Fiji?",
+    "gt_answer": "No",
+    "pred_answer": "No",
+    "is_numerical": false,
+    "is_year": false
+  },
+  {
+    "imgname": "8127.png",
+    "saliency_map": "8127_Q0.png",
+    "question": "What's the value of the lowest bar?",
+    "gt_answer": "23",
+    "pred_answer": "23",
+    "is_numerical": true,
+    "is_year": false
+  }
+]

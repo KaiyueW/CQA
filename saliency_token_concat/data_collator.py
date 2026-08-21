@@ -46,27 +46,14 @@ class SaliencyCollator:
     processor: Any  # Qwen3-VL AutoProcessor
     vision_end_token_id: int
     saliency_token_id: int
-    bert_tokenizer: Any # Vissalformer's tokenizer, used to tokenize the question text for VisSalFormer.
-    saliency_img_size: int = 224
     num_saliency_tokens: int = NUM_SALIENCY_TOKENS
     pad_token_id: int = 0 # used for padding.
-
-    def __post_init__(self):
-        self.saliency_transform = transforms.Compose([
-            transforms.Resize((self.saliency_img_size, self.saliency_img_size)),
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225],
-            ),
-        ])
 
     def __call__(self, batch: List[Dict[str, Any]]) -> Dict[str, torch.Tensor]:
         input_ids_list = []
         labels_list = []
         mm_token_type_ids_list = []
-        saliency_images = []
-        saliency_questions = []
+        saliency_latents = []
 
         for ex in batch:
             # ex["input_ids"] / ex["labels"]: already-tokenized Qwen3-VL chat
@@ -93,9 +80,7 @@ class SaliencyCollator:
             labels_list.append(torch.tensor(labels, dtype=torch.long))
             mm_token_type_ids_list.append(torch.tensor(mm_token_type_ids, dtype=torch.long))
 
-            # raw inputs for VisSalFormer -- adapt to whatever VisSalFormer expects
-            saliency_images.append(ex["raw_image"])       # e.g. PIL image or tensor
-            saliency_questions.append(ex["question_text"])  # e.g. raw question string
+            saliency_latents.append(ex["saliency_latent"])
 
         # pad to max length in batch
         max_len = max(x.size(0) for x in input_ids_list)
@@ -113,23 +98,12 @@ class SaliencyCollator:
             mm_token_type_ids[i, :L] = mm_ids
 
 
-        saliency_pixel_values = torch.stack(
-            [self.saliency_transform(img) for img in saliency_images]
-        )
- 
-        saliency_q_inputs = self.bert_tokenizer(
-            list(saliency_questions),
-            return_tensors="pt",
-            padding=True,
-        )
-
         out = {
             "input_ids": input_ids,
             "labels": labels,
             "attention_mask": attention_mask,
             "mm_token_type_ids": mm_token_type_ids,
-            "saliency_pixel_values": saliency_pixel_values,
-            "saliency_q_inputs": saliency_q_inputs,
+            "saliency_latents": torch.stack(saliency_latents, dim=0),
         }
 
         # carry through whatever pixel_values / image_grid_thw your existing
@@ -152,3 +126,4 @@ class SaliencyCollator:
     # input id: [464, 3758, 151653, 151653, 151653, 151653, 151653]
     # labels 答案: [464, 3758, -100, -100, -100, -100, -100] 这个位置模型应该预测出哪个token (loss)
     # input_embeds: real vectors corresponding to the input ids.
+    # attn_mask: 1表示"这个位置是真实token,正常参与attention计算";0表示"这个位置是padding,attention计算时直接忽略它。

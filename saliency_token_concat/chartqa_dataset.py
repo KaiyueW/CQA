@@ -2,6 +2,7 @@ import json
 from pathlib import Path
 
 from PIL import Image
+import torch
 from torch.utils.data import Dataset
 TEXT_TOKEN_TYPE = 0
 
@@ -17,23 +18,32 @@ USER_TEMPLATE_TEXT = "Answer this question based on the image: {question}\n\n"
 
 
 class ChartQASaliencyDataset(Dataset):
-    def __init__(self, json_path, img_dir, processor, max_samples=None):
+    def __init__(self, json_path, img_dir, processor, latent_dir, max_samples=None):
         with open(json_path) as f:
             raw = json.load(f)
 
         self.img_dir = Path(img_dir)
+        self.latent_dir = Path(latent_dir)
         self.processor = processor  # Qwen3-VL AutoProcessor, same instance as in train.py
 
         self.items = []
-        n_missing = 0
+        n_missing_img = 0
+        n_missing_latent = 0
         for r in raw:
             img_path = self.img_dir / r["imgname"]
             if not img_path.exists():
-                n_missing += 1
+                n_missing_img += 1
+                continue
+            stem = Path(r["saliency_map"]).stem
+            if not (self.latent_dir / f"{stem}.pt").exists():
+                n_missing_latent += 1
                 continue
             self.items.append(r)
-        if n_missing:
-            print(f"WARNING: {n_missing} records skipped, chart image not found in {img_dir}")
+        if n_missing_img:
+            print(f"WARNING: {n_missing_img} records skipped, chart image not found in {img_dir}")
+        if n_missing_latent:
+            print(f"WARNING: {n_missing_latent} records skipped, precomputed saliency "
+                  f"latent not found in {latent_dir} -- did you run precompute_saliency_latents.py?")
 
         if max_samples:
             self.items = self.items[:max_samples]
@@ -89,6 +99,5 @@ class ChartQASaliencyDataset(Dataset):
             "mm_token_type_ids": mm_token_type_ids,
             "pixel_values": prompt_inputs["pixel_values"],
             "image_grid_thw": prompt_inputs["image_grid_thw"],
-            "raw_image": raw_image,
-            "question_text": question,
+            "saliency_latent": torch.load(self.latent_dir / f"{Path(item['saliency_map']).stem}.pt"),
         }

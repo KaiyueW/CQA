@@ -74,7 +74,7 @@ def evaluation(ckpt: str, device: str, batch_size: int, img_dir: str, json_path:
         query_ids = {k: v.to(device) for k, v in query_ids.items()}
 
         with torch.no_grad():
-            preds = model(img, query_ids) # predicted saliency maps
+            preds = model(img, query_ids, return_latent_features=False) # predicted saliency maps
 
         for i in range(preds.shape[0]):
             stem = os.path.splitext(imgnames[i])[0] #"chart001.png" → "chart001"
@@ -92,10 +92,10 @@ if __name__ == '__main__':
     parser.add_argument("--device", type=str, default='cuda')
     parser.add_argument("--ckpt", type=str, default='./VisSalFormer_weights.tar')
     parser.add_argument("--batch_size", type=int, default=16)
-    parser.add_argument("--img_dir", type=str, default='../data/ChartQA_data/train/png')
-    parser.add_argument("--json_path", type=str, default='../data/ChartQA_data/train/train_all_preprocessed1.json')
+    parser.add_argument("--img_dir", type=str, default='../data/ChartQA_data/test/png')
+    parser.add_argument("--json_path", type=str, default='../data/ChartQA_data/test/test_all_preprocessed.json')
     parser.add_argument("--max_samples", type=int, default=None)
-    parser.add_argument("--output_dir", type=str, default='1')
+    parser.add_argument("--output_dir", type=str, default='2')
     args = vars(parser.parse_args())
 
     evaluation(device = args['device'], 

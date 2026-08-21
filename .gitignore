@@ -10,6 +10,8 @@ vlm_checkpoints/
 finetune/checkpoints/
 finetune/vlm_checkpoints/
 
+saliency_latents/
+
 # 忽略常见模型权重与优化器大文件
 *.safetensors
 *.pt

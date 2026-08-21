@@ -255,6 +255,6 @@ if __name__ == "__main__":
     main()
 
 # python inference_finetune.py --model qwen3vl_finetuned_baseline  --setting zeroshot --use_saliency
-# python evaluation.py --result_path ./finetune/qwen3vl_finetuned_baseline_zeroshot_no_saliency_all3200.json
+# python evaluation.py --result_path ../saliency_token_concat/results/saliency.json
 # tensorboard --logdir finetune/checkpoin
 ts/projector_llm

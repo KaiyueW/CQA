@@ -18,12 +18,17 @@ from data_collator import add_saliency_token, SaliencyCollator, NUM_SALIENCY_TOK
 MODEL_ID = "Qwen/Qwen3-VL-8B-Instruct"
 VISION_END_TOKEN_STR = "<|vision_end|>"
 
-# CHANGE: filled in with your actual paths (confirmed via mm.py smoke test).
-VISSALFORMER_CKPT_PATH = "../visSalFormer/VisSalFormer_weights.tar"
-BERT_CKPT = "bert-base-uncased"  # must match what SalFormer was trained with
-BERT_CACHE_DIR = "/tmp/kwang67_cache"  # matches tokenizer_bert.py exactly
+# UPDATE: VISSALFORMER_CKPT_PATH / BERT_CKPT / BERT_CACHE_DIR are no longer
+# needed in train.py -- VisSalFormer/BERT are only used offline now, by
+# precompute_saliency_latents.py. Kept here only as a comment for reference:
+#   VisSalFormer ckpt: ../visSalFormer/VisSalFormer_weights.tar
+#   BERT ckpt: bert-base-uncased, cache_dir /tmp/kwang67_cache
 TRAIN_JSON_PATH = "../data/ChartQA_data/train/train_all_preprocessed1.json"
 TRAIN_IMG_DIR = "../data/ChartQA_data/train/png"
+# UPDATE: added -- output directory from precompute_saliency_latents.py for
+# this split. Run that script once before training (see its docstring for
+# the exact command).
+TRAIN_LATENT_DIR = "./saliency_latents/train"
 
 
 def resolve_vision_end_token_id(tokenizer) -> int:
@@ -38,7 +43,7 @@ def resolve_vision_end_token_id(tokenizer) -> int:
     return token_id
 
 
-def build_model_and_tokenizer(vissalformer_frozen, attn_implementation: str = "sdpa"):
+def build_model_and_tokenizer(attn_implementation: str = "sdpa"):
     tokenizer = AutoTokenizer.from_pretrained(MODEL_ID)
     processor = AutoProcessor.from_pretrained(MODEL_ID)
     vision_end_token_id = resolve_vision_end_token_id(tokenizer)
@@ -46,15 +51,20 @@ def build_model_and_tokenizer(vissalformer_frozen, attn_implementation: str = "s
     model = Qwen3VLWithSaliencyBottleneck.from_pretrained(
         MODEL_ID,
         dtype=torch.bfloat16,
+        # "sdpa" is PyTorch's built-in scaled-dot-product attention, ships
+        # with torch itself, no extra install. Swap to "flash_attention_2"
+        # later if you install flash-attn and want the extra speed.
         attn_implementation=attn_implementation,
-    ) # sdpa
+    )
 
     model.enable_input_require_grads()
 
     saliency_token_id = add_saliency_token(tokenizer, model=model)
 
+    # UPDATE: no more `vissalformer=` argument -- attach_saliency_modules()
+    # now only creates the trainable projector, since VisSalFormer itself is
+    # no longer loaded live (see precompute_saliency_latents.py instead).
     model.attach_saliency_modules(
-        vissalformer=vissalformer_frozen,
         saliency_token_id=saliency_token_id,
         llm_hidden_size=model.config.text_config.hidden_size,  # 4096 for the 8B model
     )
@@ -82,41 +92,30 @@ def build_model_and_tokenizer(vissalformer_frozen, attn_implementation: str = "s
 
 
 def main(smoke_test: bool = False):
-    # CHANGE: was a TODO -- now actually loads + freezes VisSalFormer,
-    # mirroring your existing eval pipeline's loading logic.
-    from vissalformer_loading import load_frozen_vissalformer
-    vissalformer = load_frozen_vissalformer(
-        ckpt_path=VISSALFORMER_CKPT_PATH,
-        device="cuda",
-    )
-
+    # UPDATE: no more loading VisSalFormer here -- it's not part of the live
+    # training graph anymore. Run precompute_saliency_latents.py separately,
+    # once, before training (offline, independent of this script).
     model, tokenizer, processor, saliency_token_id, vision_end_token_id = \
-        build_model_and_tokenizer(vissalformer)
+        build_model_and_tokenizer()
 
-    # CHANGE: was a TODO -- now actually constructs the dataset from your
-    # ChartQA json + png directory. See chartqa_dataset.py (new file).
     from chartqa_dataset import ChartQASaliencyDataset
     train_dataset = ChartQASaliencyDataset(
         json_path=TRAIN_JSON_PATH,
         img_dir=TRAIN_IMG_DIR,
         processor=processor,
-        # CHANGE: smoke_test caps the dataset to a handful of samples so a
-        # "step" actually happens almost immediately, instead of Trainer
-        # spending time iterating over your full training set.
+        # UPDATE: added -- directory of precomputed saliency latents for
+        # this split (see precompute_saliency_latents.py).
+        latent_dir=TRAIN_LATENT_DIR,
         max_samples=8 if smoke_test else None,
     )
 
-    # CHANGE: added -- SaliencyCollator now needs a BERT tokenizer to
-    # pre-tokenize saliency_questions for VisSalFormer. Must be the SAME
-    # checkpoint + cache_dir tokenizer_bert.py used (AutoTokenizer, not
-    # BertTokenizer -- matching your existing eval pipeline exactly).
-    bert_tokenizer = AutoTokenizer.from_pretrained(BERT_CKPT, cache_dir=BERT_CACHE_DIR)
-
+    # UPDATE: SaliencyCollator no longer needs a BERT tokenizer -- question
+    # tokenization for VisSalFormer happens offline now, in
+    # precompute_saliency_latents.py, not here.
     collator = SaliencyCollator(
         processor=processor,
         vision_end_token_id=vision_end_token_id,
         saliency_token_id=saliency_token_id,
-        bert_tokenizer=bert_tokenizer,
         num_saliency_tokens=NUM_SALIENCY_TOKENS,
         pad_token_id=tokenizer.pad_token_id or 0,
     )
